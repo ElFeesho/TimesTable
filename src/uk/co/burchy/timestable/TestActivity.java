@@ -2,13 +2,11 @@ package uk.co.burchy.timestable;
 
 import java.util.ArrayList;
 
-import android.os.Bundle;
-import android.os.Handler;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -18,10 +16,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.support.v4.app.NavUtils;
 
 public class TestActivity extends Activity {
 	
+	private static final String KEY_TEST = "test";
 	public final static 	String 	INCORRECT_ANSWERS 			= "uk.co.burchy.timestable.INCORRECT_ANSWERS";
 	public final static 	String 	NUM_INCORRECT_ANSWERS 		= "uk.co.burchy.timestable.NUM_INCORRECT_ANSWERS";
 	public final static 	Integer	TEST_ON_INCORRECT_ANSWERS	= 0;
@@ -80,11 +78,11 @@ public class TestActivity extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putParcelable("test", m_test);
+		outState.putParcelable(KEY_TEST, m_test);
 	}
 
 	private void deserialiseTest(Bundle savedInstanceState) {
-		m_test = savedInstanceState.getParcelable("test");
+		m_test = savedInstanceState.getParcelable(KEY_TEST);
 	}
 
 	private void generateTest() {

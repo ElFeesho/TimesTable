@@ -147,7 +147,6 @@ public class Test implements Parcelable {
 	
 	public static Creator<Test> CREATOR = new Creator<Test>()
 	{
-
 		@Override
 		public Test createFromParcel(Parcel source) {
 			return new Test(source);
@@ -157,7 +156,6 @@ public class Test implements Parcelable {
 		public Test[] newArray(int size) {
 			return new Test[size];
 		}
-
 	};
 	
 	List<Question>				m_testQuestions;
