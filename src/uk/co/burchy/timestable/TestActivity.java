@@ -2,6 +2,7 @@ package uk.co.burchy.timestable;
 
 import java.util.ArrayList;
 
+import uk.co.burchy.timestable.StreakViewController.StreakView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -44,6 +45,8 @@ public class TestActivity extends Activity {
 	private	Handler 			m_handler;
 	private	Runnable			m_runnableSetNextQuestion;
 	
+	private StreakViewController m_streakViewController;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,10 +64,13 @@ public class TestActivity extends Activity {
 		createCallbackHandler();
 
 		createAnimations();
+		
+		m_streakViewController = new StreakViewController((StreakView) findViewById(R.id.test_streak), new EmojiStreakAdapter(this));
 
 		if(savedInstanceState == null)
 		{
 			generateTest();
+			m_streakViewController.initialQuestion();
 		}
 		else
 		{
@@ -102,6 +108,7 @@ public class TestActivity extends Activity {
 		m_handler = new Handler();
 		// This runnable object is for running the 'setNextQuestion' method, we're doing it this way so we can add a delay after the animation completes
 		m_runnableSetNextQuestion = new Runnable () {
+			@Override
 			public void run () {
 				TestActivity.this.setNextQuestion ();
 			}
@@ -127,13 +134,16 @@ public class TestActivity extends Activity {
 		
 		// Create an animation listener object so when the zoom animation completes we can set the next question
 		m_zoomAnimator.setAnimationListener (new AnimationListener () {
+			@Override
 			public void onAnimationEnd (Animation animation) {				
 				// Post the 'setNextQuestion' method to be run a delay after the animation completes				
 				m_handler.postDelayed(m_runnableSetNextQuestion, DELAY_AFTER_ANIMATION);
 			}
 			
 			// We don't need but have to declare as part of AnimationListener class
+			@Override
 			public void onAnimationRepeat (Animation animation) {}
+			@Override
 			public void onAnimationStart  (Animation animation) {}
 			}
 		);
@@ -157,11 +167,13 @@ public class TestActivity extends Activity {
         			m_answerField.setText("");
         			if (m_currentQuestion.isAnswerCorrect())
         			{
+        				m_streakViewController.questionRight();
         				m_answerField.setVisibility(EditText.INVISIBLE);
         				m_questionField.setText(this.getResources().getString(R.string.tt_correct_zoom));
         				m_questionField.startAnimation(m_zoomAnimator);
         			}
         			else {        			
+        				m_streakViewController.questionWrong();
         				updateIncorrectAnswers ();
         				setNextQuestion ();
         			}
@@ -207,7 +219,8 @@ public class TestActivity extends Activity {
     }
     
     /** Called if the incorrect answers activity requests a re-test on those questions answered incorrectly */
-    protected void onActivityResult (int requestCode, int resultCode, Intent Data) {
+    @Override
+	protected void onActivityResult (int requestCode, int resultCode, Intent Data) {
     	if (requestCode == TEST_ON_INCORRECT_ANSWERS) {
     		if (resultCode == RESULT_OK) {
     			m_test.SetTestWithIncorrectAnswers();
@@ -220,7 +233,9 @@ public class TestActivity extends Activity {
 		// If there are some more questions, then ask the next question
 		if (m_test.hasMoreQuestions()) {
 			if (m_currentQuestion.isAnswerCorrect())
+			{
 				updateCorrectAnswers ();
+			}
 
 			m_currentQuestion = m_test.askNextQuestion ();
 			m_questionField.setText (m_currentQuestion.getQuestionAsString());
@@ -230,7 +245,9 @@ public class TestActivity extends Activity {
 		else
 		{
 			if (m_currentQuestion.isAnswerCorrect())
+			{
 				updateCorrectAnswers ();
+			}
 
 			finishTest ();
 		}
@@ -304,7 +321,9 @@ public class TestActivity extends Activity {
     
     private void showIncorrectAnswers () {
     	if (m_test.GetIncorrectAnswers().size() > 0)
-    		m_showIncorrectAnswersButton.setVisibility(Button.VISIBLE);    		    	    		
+		{
+			m_showIncorrectAnswersButton.setVisibility(Button.VISIBLE);
+		}    		    	    		
     }
     
 }

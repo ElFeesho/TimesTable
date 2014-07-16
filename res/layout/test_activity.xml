@@ -7,7 +7,12 @@
     android:orientation="vertical"
     tools:context=".TestActivity" >
   
-      
+   <uk.co.burchy.timestable.view.StreakView
+       android:id="@+id/test_streak"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@null"/>
+    
    <TextView
         android:id="@+id/test_question_num"
         android:layout_width="match_parent"
