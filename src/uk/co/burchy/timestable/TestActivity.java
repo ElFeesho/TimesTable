@@ -238,10 +238,7 @@ public class TestActivity extends Activity {
     }    
     
     private void updateQuestionNumber () {
-    	String questionNum1 = this.getResources().getString(R.string.tt_question_num1);
-    	String questionNum2 = this.getResources().getString(R.string.tt_question_num2);
-    	
-    	m_questionNumber.setText(questionNum1 + " " + m_test.GetCurrentQuestion().toString() + " " + questionNum2 + " " + m_test.GetNumberQuestions().toString());
+    	m_questionNumber.setText(getString(R.string.tt_try_question__of__, m_test.GetCurrentQuestion(),  m_test.GetNumberQuestions()));
     }
     
     private void updateCorrectAnswers () {

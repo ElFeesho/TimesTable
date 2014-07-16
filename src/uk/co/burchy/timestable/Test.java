@@ -3,7 +3,6 @@ package uk.co.burchy.timestable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -21,12 +20,6 @@ public class Test implements Parcelable {
 		m_testQuestions = new ArrayList<Question>();
 		source.readList(m_testQuestions, getClass().getClassLoader());
 		m_positionInTest = source.readInt();
-	}
-
-	/** Use to empty all the questions in the test and start over */
-	public void emptyTest () {
-		m_testQuestions.clear();
-		Initialise ();
 	}
 	
 	/** Use to reset all the answers, keep current questions and start over */
@@ -86,7 +79,7 @@ public class Test implements Parcelable {
 	
 	//** Returns the current question number */
 	public Integer GetCurrentQuestion () {
-		return m_positionInTest;
+		return m_positionInTest+1;
 	}	
 	
 	/** Use to add questions to the test.  CANNOT use after you ask the first question (askNextQuestion method).  Must reRunTest or emptyTest before any new questions */
@@ -105,7 +98,7 @@ public class Test implements Parcelable {
 			aQuestion.resetAnswer();
 		}
 		
-		emptyTest();
+		m_positionInTest = 0;
 		
 		m_testQuestions = incorrectAnswers;
 		

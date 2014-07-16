@@ -5,15 +5,15 @@
     <string name="menu_settings">Settings</string>
     <string name="tt_title">Times Table Test</string>
     <string name="tt_no_of_questions">Questions per table:</string>
-    <string name="tt_tables_to_test">Tables to be tested on:</string>
-    <string name="tt_question_num1">Try question</string>
-    <string name="tt_question_num2">of</string>
+    <string name="tt_tables_to_test">Choose the timetables you want to practise:</string>
+    <string name="tt_try_question__of__">Try question %1$d of %2$d</string>
+    
     <string name="tt_correct_answers">Correct Answers: </string>
     <string name="tt_incorrect_answers">Incorrect Answers: </string>
     <string name="tt_test_complete">Test finished!</string>
     <string name="tt_total_questions">Total test questions: </string>
     <string name="ia_test_button">Take Test On These Questions</string>
-    <string name="ia_x">x</string>
+    <string name="ia_x">×</string>
     <string name="ia_equals">=</string>
     <string name="tt_correct_zoom">C O R R E C T !</string>
 
@@ -59,7 +59,6 @@
     </string-array>
 
     <string name="tt_button_start">Start Test</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_test">Test Activity</string>
     <string name="button_answer">Answer Question</string>
     <string name="button_rerun">Repeat Same Test</string>
