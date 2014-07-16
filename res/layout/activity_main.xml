@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/tt_title" />
+        
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:textSize="20sp"
+        android:text="@string/tt_tables_to_test"/>
+    
+    <ListView
+        android:id="@+id/tt_tables_to_test"
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
+    	android:paddingTop="20dp"
+    	android:paddingBottom="20dp" />
+
+	<LinearLayout 
+    	xmlns:tools="http://schemas.android.com/tools"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"    	
+    	tools:context=".MainActivity" >
+    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="5dp"
+	        android:textSize="20sp"
+	        android:text="@string/tt_no_of_questions" />
+	  
+		<LinearLayout
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	android:gravity="right">
+	    	    	
+		    <Spinner
+		        android:id="@+id/tt_spinner_no_questions"	        
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"/>
+		    
+		</LinearLayout>
+	</LinearLayout>
+
+	<LinearLayout
+	   	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+
+		<TextView
+	       android:layout_width="wrap_content"
+	       android:layout_height="wrap_content"
+	       android:textSize="20sp"
+	       android:paddingTop="10dp"
+	       android:text="@string/tt_total_questions"/>	    	    	   
+		    		
+		<TextView
+	       android:id="@+id/tt_total_questions"
+	       android:layout_width="wrap_content"
+	       android:layout_height="wrap_content"
+	       android:paddingTop="10dp"
+	       android:textSize="20sp"/>
+		    	    	   		    		    		    	    	    
+	</LinearLayout>	
+
+	<LinearLayout
+	   	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:orientation="vertical"
+    	android:gravity="bottom">
+		
+	    <Button
+	        android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:text="@string/tt_button_start"
+	    	android:textSize="25sp"
+	    	android:onClick="startTest"/>
+    </LinearLayout>
+     	
+</LinearLayout>

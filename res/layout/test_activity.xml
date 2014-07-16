@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical"
+    tools:context=".TestActivity" >
+  
+      
+   <TextView
+        android:id="@+id/test_question_num"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"/>
+	        
+   <LinearLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:paddingLeft="16dp"
+    	android:paddingRight="16dp"
+    	android:gravity="center"
+    	android:orientation="horizontal">
+	           
+	    <TextView
+	        android:id="@+id/test_question" 
+	        android:paddingTop="20dp"     
+	        android:textSize="35sp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"/>
+		    
+	    <EditText
+	        android:id="@+id/test_answer"
+	        android:paddingTop="20dp"     
+        	android:textSize="35sp"
+        	android:maxLength="3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:inputType="phone"/>	    	    
+		        
+	</LinearLayout>
+		
+   <TextView
+       android:id="@+id/test_correct_answers"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:paddingTop="5dp"
+       android:textSize="25sp"/>
+	   
+   <TextView
+       android:id="@+id/test_incorrect_answers"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:paddingBottom="6dp"
+       android:textSize="25sp"/> 
+	
+	
+    <Button
+        android:id="@+id/answer_question"
+   	   	android:layout_width="fill_parent"
+   	   	android:layout_height="wrap_content"
+   	   	android:textSize="30sp"
+   	   	android:text="@string/button_answer"
+		android:onClick="answerQuestion"/>    
+
+	<LinearLayout 
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+    		    
+	    <Button
+	  	   	android:id="@+id/test_restart"
+	   	   	android:layout_width="fill_parent"
+	   	   	android:layout_height="wrap_content"
+	   	   	android:text="@string/button_rerun"
+	   	   	android:layout_weight="0.5"
+	   	   	android:textSize="14sp"
+			android:onClick="rerunTest"/>
+		    
+		<Button
+	  	   	android:id="@+id/test_new"
+	   	   	android:layout_width="fill_parent"
+	   	   	android:layout_height="wrap_content"
+	   	   	android:text="@string/button_new"
+	   	   	android:layout_weight="0.5"
+	   	   	android:textSize="14sp"
+			android:onClick="newTest"/>
+	
+	</LinearLayout>
+		
+	<Button
+  	   	android:id="@+id/test_show_incorrect"
+   	   	android:layout_width="fill_parent"
+   	   	android:layout_height="wrap_content"
+		android:text="@string/button_show_incorrect"
+   	   	android:textSize="20sp"
+		android:onClick="showIncorrect"/>
+
+	    	        
+</LinearLayout>
