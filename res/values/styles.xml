@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -23,5 +23,9 @@
         <item name="android:padding">8dp</item>
         <item name="android:textSize">25sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+    <style name="tt_numpad_button" parent="android:Widget.Holo.Light.Button">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">18sp</item>
     </style>
 </resources>

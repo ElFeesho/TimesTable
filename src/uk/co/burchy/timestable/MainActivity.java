@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ public class MainActivity extends Activity {
 	private final		Integer	DEFAULT_NUM_QUESTIONS = 12;
 	
 	private 	Spinner		m_spinnerNumQuestions;
-	private		ListView	m_listSelectedTables;
+	private		GridView	m_listSelectedTables;
 	private		TextView	m_totalQuestions;
 	
 	
@@ -63,7 +64,7 @@ public class MainActivity extends Activity {
         });
 
         // Create the list view to select which times tables to test on
-        m_listSelectedTables = (ListView) findViewById (R.id.tt_tables_to_test);
+        m_listSelectedTables = (GridView) findViewById (R.id.tt_tables_to_test);
         String[] availableTables = this.getResources().getStringArray(R.array.tt_available_tables);
         ArrayAdapter<String> ouradapter = new ArrayAdapter<String> (this,android.R.layout.select_dialog_multichoice,android.R.id.text1, availableTables);
         m_listSelectedTables.setAdapter (ouradapter);

@@ -18,13 +18,13 @@
     <string name="tt_correct_zoom">C O R R E C T !</string>
 
     <string-array name="tt_streak_emoji">
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>0</item>
-		<item>E</item>
-		<item>F</item>
-		<item>G</item>
+        <item>Eep!</item>
+        <item>Oh no!</item>
+        <item>Woops!</item>
+        <item></item>
+		<item>Cool!</item>
+		<item>Awesome!</item>
+		<item>AMAZING!!!</item>
     </string-array>
     
     <string-array name="tt_number_questions">
@@ -76,5 +76,18 @@
     <string name="button_show_incorrect">Show Incorrect Answers</string>
     <string name="button_test_incorrect">Test Incorrect</string>
     <string name="title_activity_incorrect_answers">IncorrectAnswersActivity</string>
+    <string name="tt_numpad_answer">Answer</string>
+    <string name="tt_numpad_one">1</string>
+    <string name="tt_numpad_two">2</string>
+    <string name="tt_numpad_three">3</string>
+    <string name="tt_numpad_four">4</string>
+    <string name="tt_numpad_five">5</string>
+    <string name="tt_numpad_six">6</string>
+    <string name="tt_numpad_seven">7</string>
+    <string name="tt_numpad_eight">8</string>
+    <string name="tt_numpad_nine">9</string>
+    <string name="tt_numpad_clear">C</string>
+    <string name="tt_numpad_bkspc">⇐</string>
+    <string name="tt_numpad_zero">0</string>
 
 </resources>

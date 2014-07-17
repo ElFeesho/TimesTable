@@ -28,8 +28,9 @@
         android:text="@string/tt_tables_to_test"
         android:textSize="20sp" />
 
-    <ListView
+    <GridView
         android:id="@+id/tt_tables_to_test"
+        android:numColumns="3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_above="@+id/tt_no_of_questions_label"

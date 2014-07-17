@@ -3,11 +3,14 @@ package uk.co.burchy.timestable;
 import java.util.ArrayList;
 
 import uk.co.burchy.timestable.StreakViewController.StreakView;
+import uk.co.burchy.timestable.view.NumPadView;
+import uk.co.burchy.timestable.view.NumPadView.NumPadViewListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -37,7 +40,7 @@ public class TestActivity extends Activity {
 	private	EditText			m_answerField;
 	private	Question			m_currentQuestion;
 	private	Button				m_restartButton;
-	private Button				m_answerButton;
+	private NumPadView			m_numPad;
 	private Button				m_newTestButton;
 	private Button				m_showIncorrectAnswersButton;
 	private Animation			m_animator;
@@ -60,6 +63,34 @@ public class TestActivity extends Activity {
 		m_selectedTables = intent.getIntegerArrayListExtra(MainActivity.SELECTED_TIMES_TABLES);
 		
 		bindView();
+		
+		m_numPad.setNumPadViewListener(new NumPadViewListener(){
+
+			@Override
+			public void numPadClicked(int number) {
+				m_answerField.append(number+"");
+			}
+
+			@Override
+			public void numPadClear() {
+				m_answerField.setText(null);
+			}
+
+			@Override
+			public void numPadBackspace() {
+				Editable answerText = m_answerField.getText();
+				if(answerText.length()>0)
+				{
+					m_answerField.setText(answerText.subSequence(0, answerText.length()-1));
+				}
+			}
+
+			@Override
+			public void numPadAnswer() {
+				answerQuestion();
+			}
+			
+		});
 		
 		createCallbackHandler();
 
@@ -123,7 +154,7 @@ public class TestActivity extends Activity {
 		m_correctAnswers				= (TextView) 			findViewById (R.id.test_correct_answers);
 		m_incorrectAnswers				= (TextView) 			findViewById (R.id.test_incorrect_answers);
 		m_restartButton					= (Button) 	 			findViewById (R.id.test_restart);
-		m_answerButton					= (Button)	 			findViewById (R.id.answer_question);
+		m_numPad						= (NumPadView)	 		findViewById (R.id.test_numpad);
 		m_newTestButton					= (Button)	 			findViewById (R.id.test_new);
 		m_showIncorrectAnswersButton	= (Button)				findViewById (R.id.test_show_incorrect);
 	}
@@ -150,7 +181,7 @@ public class TestActivity extends Activity {
 	}
 	
     /** Called when the user presses the submit answer button */
-    public void answerQuestion (View view) {
+    public void answerQuestion () {
     	if (m_currentQuestion != null)
     	{
     		String stringAnswer = m_answerField.getText ().toString();
@@ -280,12 +311,10 @@ public class TestActivity extends Activity {
 			m_restartButton.setVisibility(Button.INVISIBLE);
 			m_newTestButton.setVisibility(Button.INVISIBLE);
 			m_showIncorrectAnswersButton.setVisibility(Button.INVISIBLE);
-			m_answerButton.setEnabled(true);
+			//m_answerButton.setEnabled(true);
 			m_answerField.setVisibility (TextView.VISIBLE);			
 			m_currentQuestion = m_test.askNextQuestion();
 			m_questionField.setText (m_currentQuestion.getQuestionAsString());
-			
-			showKeyboard ();
 		}
 		
 		// Set the question number and answer indicators
@@ -296,9 +325,9 @@ public class TestActivity extends Activity {
     }
     
     private void finishTest () {
-    	hideKeyboard ();
+    	m_numPad.setVisibility(View.GONE);
     	m_answerField.setVisibility(TextView.INVISIBLE);
-    	m_answerButton.setEnabled(false);
+    	//m_answerButton.setEnabled(false);
     	m_restartButton.setVisibility(Button.VISIBLE);
     	m_newTestButton.setVisibility(Button.VISIBLE);
     	showIncorrectAnswers ();
@@ -306,17 +335,6 @@ public class TestActivity extends Activity {
     	
     	String testCompleted = this.getResources().getString(R.string.tt_test_complete);
     	m_questionField.setText(testCompleted);
-    }
-    
-    private void showKeyboard () {
-    	InputMethodManager imm = (InputMethodManager) getSystemService (Context.INPUT_METHOD_SERVICE);
-    	imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-    }
-    
-    private void hideKeyboard () {
-    	InputMethodManager imm = (InputMethodManager) getSystemService (Context.INPUT_METHOD_SERVICE);
-    	imm.hideSoftInputFromWindow(m_answerField.getWindowToken(), 0);
-    	
     }
     
     private void showIncorrectAnswers () {

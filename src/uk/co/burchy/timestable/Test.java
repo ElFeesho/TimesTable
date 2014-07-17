@@ -37,7 +37,7 @@ public class Test implements Parcelable {
 	
 	/** Use to check if there are more questions left in the test to answer */
 	public boolean hasMoreQuestions () {
-		return m_positionInTest < m_testQuestions.size();
+		return m_positionInTest < m_testQuestions.size()-1;
 	}
 	
 	/** Use to get the next question to get an answer for */

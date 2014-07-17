@@ -20,6 +20,8 @@ public class EmojiStreakAdapter implements StreakAdapter
 		Resources resources = forResources.getResources();
 		
 		m_streakIcons = resources.getStringArray(R.array.tt_streak_emoji);
+		
+		m_streakIcons[NEUTRAL] = "\uD83D\uDE01";
 	}
 
 	@Override
