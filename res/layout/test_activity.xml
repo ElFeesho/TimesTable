@@ -17,48 +17,61 @@
         android:layout_alignParentTop="true"
         android:text="@null" />
 
-    <TextView
-        android:id="@+id/test_question"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/tt_answer_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/test_answer"
         android:layout_below="@+id/test_question_num"
-        android:layout_marginTop="6dp"
-        android:fontFamily="sans-serif-light"
-        android:paddingTop="20dp"
-        android:text="@null"
-        android:textSize="35sp" />
+        android:baselineAligned="true"
+        android:gravity="center" >
 
-    <TextView
-        android:background="@android:drawable/editbox_background"
-        android:id="@+id/test_answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/test_question_num"
-        android:layout_toRightOf="@+id/test_question"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:maxLength="3"
-        android:minWidth="80dp"
-        android:paddingTop="20dp"
-        android:textSize="35sp" />
+        <TextView
+            android:id="@+id/test_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="sans-serif-light"
+            android:paddingTop="20dp"
+            android:text="@null"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/test_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:maxLength="3"
+            android:minWidth="80dp"
+            android:paddingTop="20dp"
+            android:textSize="35sp" />
+    </LinearLayout>
 
     <uk.co.burchy.timestable.view.StreakView
         android:id="@+id/test_streak"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/test_answer"
+        android:layout_below="@+id/tt_answer_container"
         android:gravity="center"
         android:text="@null"
         android:textSize="38sp" />
+
+    <uk.co.burchy.timestable.view.TimeBonusView
+        android:id="@+id/tt_time_bonus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="false"
+        android:layout_below="@+id/test_streak" />
 
     <TextView
         android:id="@+id/test_correct_answers"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/test_streak"
+        android:layout_below="@+id/tt_time_bonus"
         android:paddingTop="5dp"
         android:text="@null"
         android:textSize="18sp" />
@@ -81,7 +94,6 @@
         android:layout_alignLeft="@+id/test_incorrect_answers"
         android:layout_alignTop="@+id/test_restart"
         android:layout_toLeftOf="@+id/test_restart"
-        android:layout_weight="0.5"
         android:onClick="newTest"
         android:text="@string/button_new"
         android:textSize="14sp" />
@@ -106,11 +118,12 @@
         android:onClick="rerunTest"
         android:text="@string/button_rerun"
         android:textSize="14sp" />
-    
-    <include layout="@layout/cv_numpad"
+
+    <include
         android:id="@+id/test_numpad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        layout="@layout/cv_numpad" />
 
 </RelativeLayout>
