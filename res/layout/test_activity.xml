@@ -29,16 +29,15 @@
         android:text="@null"
         android:textSize="35sp" />
 
-    <EditText
+    <TextView
+        android:background="@android:drawable/editbox_background"
         android:id="@+id/test_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/test_question_num"
         android:layout_toRightOf="@+id/test_question"
-        android:enabled="false"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:inputType="number"
         android:maxLength="3"
         android:minWidth="80dp"
         android:paddingTop="20dp"
@@ -52,7 +51,7 @@
         android:layout_below="@+id/test_answer"
         android:gravity="center"
         android:text="@null"
-        android:textSize="18sp" />
+        android:textSize="38sp" />
 
     <TextView
         android:id="@+id/test_correct_answers"

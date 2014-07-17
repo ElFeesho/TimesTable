@@ -16,16 +16,6 @@
     <string name="ia_x">×</string>
     <string name="ia_equals">=</string>
     <string name="tt_correct_zoom">C O R R E C T !</string>
-
-    <string-array name="tt_streak_emoji">
-        <item>Eep!</item>
-        <item>Oh no!</item>
-        <item>Woops!</item>
-        <item></item>
-		<item>Cool!</item>
-		<item>Awesome!</item>
-		<item>AMAZING!!!</item>
-    </string-array>
     
     <string-array name="tt_number_questions">
         <item>1</item>

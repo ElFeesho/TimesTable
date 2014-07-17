@@ -37,7 +37,7 @@ public class TestActivity extends Activity {
 	private TextView			m_questionField;
 	private	TextView			m_correctAnswers;
 	private	TextView			m_incorrectAnswers;
-	private	EditText			m_answerField;
+	private	TextView			m_answerField;
 	private	Question			m_currentQuestion;
 	private	Button				m_restartButton;
 	private NumPadView			m_numPad;
@@ -78,7 +78,7 @@ public class TestActivity extends Activity {
 
 			@Override
 			public void numPadBackspace() {
-				Editable answerText = m_answerField.getText();
+				String answerText = m_answerField.getText().toString();
 				if(answerText.length()>0)
 				{
 					m_answerField.setText(answerText.subSequence(0, answerText.length()-1));
@@ -96,7 +96,7 @@ public class TestActivity extends Activity {
 
 		createAnimations();
 		
-		m_streakViewController = new StreakViewController((StreakView) findViewById(R.id.test_streak), new EmojiStreakAdapter(this));
+		m_streakViewController = new StreakViewController((StreakView) findViewById(R.id.test_streak), new EmojiStreakAdapter());
 
 		if(savedInstanceState == null)
 		{
@@ -106,6 +106,21 @@ public class TestActivity extends Activity {
 		else
 		{
 			deserialiseTest(savedInstanceState);
+
+			// Run through all the questions to ensure the streak view is up to date
+			m_streakViewController.initialQuestion();
+			for(int i = 0; i < m_test.GetCurrentQuestion()-1; i++)
+			{
+				switch(m_test.getAnswer(i))
+				{
+				case CORRECT_ANSWERS:
+					m_streakViewController.questionRight();
+					break;
+				case INCORRECT_ANSWERS:
+					m_streakViewController.questionWrong();
+					break;
+				}
+			}
 		}
 		
 	
@@ -150,7 +165,7 @@ public class TestActivity extends Activity {
 		// Bind all the necessary fields to instance variables
 		m_questionNumber				= (TextView) 			findViewById (R.id.test_question_num);
 		m_questionField					= (TextView) 			findViewById (R.id.test_question);
-		m_answerField					= (EditText) 			findViewById (R.id.test_answer);
+		m_answerField					= (TextView) 			findViewById (R.id.test_answer);
 		m_correctAnswers				= (TextView) 			findViewById (R.id.test_correct_answers);
 		m_incorrectAnswers				= (TextView) 			findViewById (R.id.test_incorrect_answers);
 		m_restartButton					= (Button) 	 			findViewById (R.id.test_restart);

@@ -104,6 +104,11 @@ public class Test implements Parcelable {
 		
 	}
 	
+	public AnswerType getAnswer(int questionIndex)
+	{
+		return m_testQuestions.get(questionIndex).isAnswerCorrect() ? AnswerType.CORRECT_ANSWERS : AnswerType.INCORRECT_ANSWERS;
+	}
+	
 	private List<Question> GetAnswers (AnswerType checkType) {
 		List<Question>		answers = new ArrayList<Question> ();
 		
@@ -122,7 +127,7 @@ public class Test implements Parcelable {
 		m_positionInTest = 0;
 	}
 	
-	private enum AnswerType {
+	public enum AnswerType {
 		CORRECT_ANSWERS,
 		INCORRECT_ANSWERS
 	}

@@ -1,8 +1,6 @@
 package uk.co.burchy.timestable;
 
 import uk.co.burchy.timestable.StreakViewController.StreakAdapter;
-import android.content.Context;
-import android.content.res.Resources;
 
 public class EmojiStreakAdapter implements StreakAdapter
 {
@@ -13,15 +11,17 @@ public class EmojiStreakAdapter implements StreakAdapter
 
 	private int m_streakCount = 0;
 	
-	private String[] m_streakIcons;
+	private String[] m_streakIcons = new String[7];
 	
-	public EmojiStreakAdapter(Context forResources)
+	public EmojiStreakAdapter()
 	{
-		Resources resources = forResources.getResources();
-		
-		m_streakIcons = resources.getStringArray(R.array.tt_streak_emoji);
-		
-		m_streakIcons[NEUTRAL] = "\uD83D\uDE01";
+		m_streakIcons[NEUTRAL-3] = "\uD83D\uDE2D";
+		m_streakIcons[NEUTRAL-2] = "\uD83D\uDE1E";
+		m_streakIcons[NEUTRAL-1] = "\uD83D\uDE15";
+		m_streakIcons[NEUTRAL] 	 = "\uD83D\uDE10";
+		m_streakIcons[NEUTRAL+1] = "\uD83D\uDE03";
+		m_streakIcons[NEUTRAL+2] = "\uD83D\uDE04";
+		m_streakIcons[NEUTRAL+3] = "\uD83D\uDE4C";
 	}
 
 	@Override

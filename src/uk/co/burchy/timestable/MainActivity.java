@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         // Create the list view to select which times tables to test on
         m_listSelectedTables = (GridView) findViewById (R.id.tt_tables_to_test);
         String[] availableTables = this.getResources().getStringArray(R.array.tt_available_tables);
-        ArrayAdapter<String> ouradapter = new ArrayAdapter<String> (this,android.R.layout.select_dialog_multichoice,android.R.id.text1, availableTables);
+        ArrayAdapter<String> ouradapter = new ArrayAdapter<String> (this,R.layout.li_table, android.R.id.text1, availableTables);
         m_listSelectedTables.setAdapter (ouradapter);
         m_listSelectedTables.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         
@@ -74,6 +74,8 @@ public class MainActivity extends Activity {
         	@Override
         	public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
         		setTotalQuestions ();
+        		m_listSelectedTables.refreshDrawableState();
+        		
         	}
 		});
         
