@@ -13,8 +13,6 @@ import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
@@ -23,11 +21,11 @@ import android.widget.TextView;
 public class TestActivity extends Activity
 {
 
+	private static final int POPUP_DISPLAY_TIME = 500;
 	private static final String KEY_TEST = "test";
 	public final static String INCORRECT_ANSWERS = "uk.co.burchy.timestable.INCORRECT_ANSWERS";
 	public final static String NUM_INCORRECT_ANSWERS = "uk.co.burchy.timestable.NUM_INCORRECT_ANSWERS";
 	public final static Integer TEST_ON_INCORRECT_ANSWERS = 0;
-	private final static Integer DELAY_AFTER_ANIMATION = 250;
 
 	private Integer m_selectedNumQuestions;
 	private ArrayList<Integer> m_selectedTables;
@@ -114,37 +112,25 @@ public class TestActivity extends Activity
 		generateTest(savedInstanceState);
 
 		startTest();
-
 	}
 	
 	private void showCorrectOverlay()
 	{
-		final PopupWindow pw = new PopupWindow(LayoutInflater.from(this).inflate(R.layout.cv_answer_toast, null));
-		pw.setAnimationStyle(android.R.style.Animation_Toast);
-		pw.setWidth(1080);
-		pw.setHeight(300);
-		pw.update();
-		
-		pw.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 200);
-		m_handler.postDelayed(new Runnable()
-		{
-			
-			@Override
-			public void run()
-			{
-				setNextQuestion();
-				pw.dismiss();
-			}
-		}, 1500);
+		showPopupView(LayoutInflater.from(this).inflate(R.layout.cv_answer_toast, null));
 	}
 
 	
 	private void showIncorrectOverlay()
 	{
-		final PopupWindow pw = new PopupWindow(LayoutInflater.from(this).inflate(R.layout.cv_answer_incorrect_toast, null));
-		pw.setAnimationStyle(android.R.style.Animation_Toast);
-		pw.setWidth(1080);
-		pw.setHeight(300);
+		View view = LayoutInflater.from(this).inflate(R.layout.cv_answer_incorrect_toast, null);
+		showPopupView(view);
+	}
+
+	private void showPopupView(View view) {
+		final PopupWindow pw = new PopupWindow(view);
+		pw.setAnimationStyle(android.R.style.Animation_Dialog);
+		pw.setWidth((int) (getResources().getDisplayMetrics().widthPixels*0.6f));
+		pw.setHeight((int)(getResources().getDisplayMetrics().heightPixels*0.3f));
 		pw.update();
 		
 		pw.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 200);
@@ -157,7 +143,7 @@ public class TestActivity extends Activity
 				setNextQuestion();
 				pw.dismiss();
 			}
-		}, 1500);
+		}, POPUP_DISPLAY_TIME);
 	}
 
 	private void generateTest(Bundle savedInstanceState)

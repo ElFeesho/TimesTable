@@ -8,6 +8,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Test implements Parcelable {
+
+	private List<Question>				m_testQuestions;
+	private int							m_positionInTest;
 	
 	public Test ()
 	{
@@ -156,6 +159,4 @@ public class Test implements Parcelable {
 		}
 	};
 	
-	List<Question>				m_testQuestions;
-	int							m_positionInTest;
 }
