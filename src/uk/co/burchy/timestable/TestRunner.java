@@ -2,6 +2,8 @@ package uk.co.burchy.timestable;
 
 import java.util.HashSet;
 
+import uk.co.burchy.timestable.model.Test;
+
 /**
  * This class will eventually handle all the state of a {@link Test}.
  * 
@@ -20,6 +22,12 @@ public class TestRunner {
 	private HashSet<TestRunnerObserver> m_observers = new HashSet<TestRunnerObserver>();
 	
 	private Test m_test;
+	
+	/*
+	 * State variables
+	 */
+	
+	private int m_currentQuestion = 0;
 	
 	public TestRunner(Test test)
 	{

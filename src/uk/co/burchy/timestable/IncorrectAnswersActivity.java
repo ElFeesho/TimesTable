@@ -2,6 +2,7 @@ package uk.co.burchy.timestable;
 
 import java.util.ArrayList;
 
+import uk.co.burchy.timestable.model.Question;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class IncorrectAnswersActivity extends Activity {
 		
 		// Create a custom array adapter to build rows with multiple text views within each row to display incorrect question/answers
 		ArrayAdapter<Question>	ia_arrayAdapter = new ArrayAdapter<Question> (this, R.layout.ia_row, m_incorrectAnswerList) {
+			@Override
 			public View getView (int position, View convertView, ViewGroup parent) {
 				View row;
 				
@@ -44,11 +46,11 @@ public class IncorrectAnswersActivity extends Activity {
 				
 				Question	aquestion 	= getItem (position);
 				
-				bindTextToId(row, aquestion.getQuestion().toString(), R.id.ia_question);
+				/*bindTextToId(row, aquestion.getQuestion().toString(), R.id.ia_question);
 				bindTextToId(row, aquestion.getTable().toString(), R.id.ia_table);
 				bindTextToId(row, aquestion.getAnswerGiven().toString(), R.id.ia_answer_given);
 				bindTextToId(row, "(Correct = " + aquestion.getCorrectAnswer().toString() + ")", R.id.ia_correct_answer);
-				
+				*/
 				return row;
 			}
 
