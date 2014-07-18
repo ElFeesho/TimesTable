@@ -43,10 +43,7 @@ public class TestActivity extends Activity
 	private NumPadView m_numPad;
 	private Button m_newTestButton;
 	private Button m_showIncorrectAnswersButton;
-	private Animation m_animator;
-	private ScaleAnimation m_zoomAnimator;
 	private Handler m_handler;
-	private Runnable m_runnableSetNextQuestion;
 
 	private StreakViewController m_streakViewController;
 	private TimeBonusController m_timeBonusController;
@@ -265,7 +262,6 @@ public class TestActivity extends Activity
 					m_timeBonusController.questionAnsweredCorrectly();
 					m_answerField.setVisibility(EditText.INVISIBLE);
 					m_questionField.setText(this.getResources().getString(R.string.tt_correct_zoom));
-					;
 				}
 				else
 				{
@@ -381,6 +377,7 @@ public class TestActivity extends Activity
 	{
 		String incorrectAnswers = this.getResources().getString(R.string.tt_incorrect_answers);
 		Integer numIncorrectAnswers = m_test.GetIncorrectAnswers().size();
+		
 		m_incorrectAnswers.setText(incorrectAnswers + numIncorrectAnswers.toString());
 	}
 
@@ -408,6 +405,7 @@ public class TestActivity extends Activity
 
 	private void finishTest()
 	{
+		pauseTimeBonus();
 		m_numPad.setVisibility(View.GONE);
 		m_answerField.setVisibility(TextView.INVISIBLE);
 		// m_answerButton.setEnabled(false);
