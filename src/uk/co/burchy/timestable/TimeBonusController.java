@@ -1,13 +1,16 @@
 package uk.co.burchy.timestable;
 
-public class TimeBonusController
+import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
+import uk.co.burchy.timestable.model.Question;
+
+public class TimeBonusController implements TestRunnerObserver
 {
 	/**
 	 * Something that implements
 	 * @author chris
 	 *
 	 */
-	public interface TimeBonus
+	public interface TimeBonus 
 	{
 		public void timeBonusDisplay(float timeLeft);
 	}
@@ -31,26 +34,41 @@ public class TimeBonusController
 		m_timeBonusAdapter = adapter;
 	}
 	
-	public void questionStarted()
+	public void update()
+	{
+		m_timeBonus.timeBonusDisplay(m_timeBonusAdapter.timeBonusTimeLeft());
+	}
+
+	@Override
+	public void testQuestionAnsweredCorrectly()
+	{
+		m_timeBonusAdapter.timeBonusQuestionCorrect();
+		// return m_timeBonusAdapter.timeBonusEarnt();
+	}
+
+	@Override
+	public void testQuestionAnsweredIncorrectly()
+	{
+		m_timeBonusAdapter.timeBonusQuestionIncorrect();
+	}
+
+	@Override
+	public void testStarted()
 	{
 		m_timeBonusAdapter.timeBonusStartBonus();
 		m_timeBonus.timeBonusDisplay(1.0f);
 	}
-	
-	public boolean questionAnsweredCorrectly()
+
+	@Override
+	public void testFinished()
 	{
-		m_timeBonusAdapter.timeBonusQuestionCorrect();
-		return m_timeBonusAdapter.timeBonusEarnt();
+		
 	}
-	
-	public void questionAnsweredIncorrectly()
+
+	@Override
+	public void testQuestionAsked(Question question)
 	{
-		m_timeBonusAdapter.timeBonusQuestionIncorrect();
-	}
-	
-	public void update()
-	{
-		m_timeBonus.timeBonusDisplay(m_timeBonusAdapter.timeBonusTimeLeft());
+		
 	}
 	
 

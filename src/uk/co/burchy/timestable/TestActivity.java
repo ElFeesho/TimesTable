@@ -7,15 +7,12 @@ import uk.co.burchy.timestable.StreakViewController.StreakView;
 import uk.co.burchy.timestable.TimeBonusController.TimeBonus;
 import uk.co.burchy.timestable.model.Question;
 import uk.co.burchy.timestable.model.Test;
-import uk.co.burchy.timestable.view.NumPadView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class TestActivity extends Activity
 {
@@ -41,6 +38,7 @@ public class TestActivity extends Activity
 			m_handler.postDelayed(this, 10);
 		}
 	};
+	private TestRunner	m_testRunner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -48,7 +46,6 @@ public class TestActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.test_activity);
 
-		bindView();
 
 		m_streakViewController = new StreakViewController((StreakView) findViewById(R.id.test_streak), new EmojiStreakAdapter());
 		m_timeBonusController = new TimeBonusController((TimeBonus) findViewById(R.id.tt_time_bonus), new CurrentTimeTimeBonusAdapter());
@@ -61,7 +58,11 @@ public class TestActivity extends Activity
 		{
 			m_test = deserialiseTest(getIntent().getExtras());
 		}
-
+		
+		m_testRunner = new TestRunner(m_test);
+		
+		m_testRunner.addObserver(m_streakViewController);
+		m_testRunner.addObserver(m_timeBonusController);
 	}
 	
 	@Override
@@ -80,19 +81,6 @@ public class TestActivity extends Activity
 		return result;
 	}
 	
-	private void bindView()
-	{
-		// Bind all the necessary fields to instance variables
-		m_questionNumber = (TextView) findViewById(R.id.test_question_num);
-		m_questionField = (TextView) findViewById(R.id.test_question);
-		m_answerField = (TextView) findViewById(R.id.test_answer);
-		m_correctAnswers = (TextView) findViewById(R.id.test_correct_answers);
-		m_incorrectAnswers = (TextView) findViewById(R.id.test_incorrect_answers);
-		m_restartButton = (Button) findViewById(R.id.test_restart);
-		m_numPad = (NumPadView) findViewById(R.id.test_numpad);
-		m_newTestButton = (Button) findViewById(R.id.test_new);
-		m_showIncorrectAnswersButton = (Button) findViewById(R.id.test_show_incorrect);
-	}
 
 	public static Intent intentForTest(Context context, Test test)
 	{

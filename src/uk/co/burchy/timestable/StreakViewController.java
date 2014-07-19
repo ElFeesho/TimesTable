@@ -1,6 +1,9 @@
 package uk.co.burchy.timestable;
 
-public class StreakViewController
+import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
+import uk.co.burchy.timestable.model.Question;
+
+public class StreakViewController implements TestRunnerObserver
 {
 	public interface StreakView
 	{
@@ -23,19 +26,34 @@ public class StreakViewController
 		m_streakAdapter = streakAdapter;
 	}
 	
-	public void questionRight()
-	{
+	@Override
+	public void testQuestionAnsweredCorrectly()
+	{		
 		m_streakView.streakViewShowStreakIcon(m_streakAdapter.iconForRightAnswer());
 	}
-	
-	public void questionWrong()
-	{
+
+	@Override
+	public void testQuestionAnsweredIncorrectly()
+	{		
 		m_streakView.streakViewShowStreakIcon(m_streakAdapter.iconForWrongAnswer());
 	}
-	
-	public void initialQuestion()
+
+	@Override
+	public void testStarted()
 	{
-		m_streakView.streakViewShowStreakIcon(m_streakAdapter.iconForFirstQuestion());
+		m_streakView.streakViewShowStreakIcon(m_streakAdapter.iconForFirstQuestion());		
+	}
+
+	@Override
+	public void testFinished()
+	{
+		
+	}
+
+	@Override
+	public void testQuestionAsked(Question question)
+	{
+		
 	}
 
 }
