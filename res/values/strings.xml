@@ -13,9 +13,7 @@
     <string name="tt_test_complete">Test finished!</string>
     <string name="tt_total_questions">Total test questions: </string>
     <string name="ia_test_button">Take Test On These Questions</string>
-    <string name="ia_x">×</string>
-    <string name="ia_equals">=</string>
-    <string name="tt_correct_zoom">C O R R E C T !</string>
+    <string name="tt_question_fmt">%1$d x %2$d =</string>
     
     <string-array name="tt_number_questions">
         <item>1</item>

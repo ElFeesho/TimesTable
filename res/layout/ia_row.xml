@@ -16,7 +16,6 @@
         android:id="@+id/ia_x"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/ia_x"
    		android:gravity="center"
    		android:textSize="25sp"
         android:layout_weight="2"/>
@@ -33,7 +32,6 @@
         android:id="@+id/ia_equals"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/ia_equals" 
    		android:gravity="center"
    		android:textSize="25sp"
         android:layout_weight="2"/>

@@ -7,6 +7,8 @@ import uk.co.burchy.timestable.StreakViewController.StreakView;
 import uk.co.burchy.timestable.TimeBonusController.TimeBonus;
 import uk.co.burchy.timestable.model.Question;
 import uk.co.burchy.timestable.model.Test;
+import uk.co.burchy.timestable.view.NumPadView;
+import uk.co.burchy.timestable.view.NumPadView.NumPadViewListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +24,7 @@ public class TestActivity extends Activity
 	public final static String INCORRECT_ANSWERS = "uk.co.burchy.timestable.INCORRECT_ANSWERS";
 	public final static String NUM_INCORRECT_ANSWERS = "uk.co.burchy.timestable.NUM_INCORRECT_ANSWERS";
 	public final static Integer TEST_ON_INCORRECT_ANSWERS = 0;
+	private static final String	KEY_STATE	= "state";
 
 	private Test m_test;
 	private Handler m_handler;
@@ -29,40 +32,72 @@ public class TestActivity extends Activity
 	private StreakViewController m_streakViewController;
 	private TimeBonusController m_timeBonusController;
 
-	private Runnable m_updateRunnable = new Runnable()
-	{
-		@Override
-		public void run()
-		{
-			m_timeBonusController.update();
-			m_handler.postDelayed(this, 10);
-		}
-	};
 	private TestRunner	m_testRunner;
+	private QuestionViewController	m_questionViewController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.test_activity);
+		
+		NumPadView numPad = (NumPadView) findViewById(R.id.test_numpad);
 
-
+		numPad.setNumPadViewListener(new NumPadViewListener()
+		{
+			@Override
+			public void numPadClicked(int number)
+			{
+				m_questionViewController.addAnswerNumber(number);
+			}
+			
+			@Override
+			public void numPadClear()
+			{
+				m_questionViewController.clearAnswer();
+			}
+			
+			@Override
+			public void numPadBackspace()
+			{
+				m_questionViewController.backspaceAnswer();
+			}
+			
+			@Override
+			public void numPadAnswer()
+			{
+				if(m_questionViewController.getAnswerBuffer().length()>0)
+				{
+					m_testRunner.answerQuestion(Integer.parseInt(m_questionViewController.getAnswerBuffer()));
+					m_questionViewController.clearAnswer();
+					m_testRunner.startNextQuestion();
+				}
+			}
+		});
+		
 		m_streakViewController = new StreakViewController((StreakView) findViewById(R.id.test_streak), new EmojiStreakAdapter());
 		m_timeBonusController = new TimeBonusController((TimeBonus) findViewById(R.id.tt_time_bonus), new CurrentTimeTimeBonusAdapter());
-
+		m_questionViewController = new QuestionViewController(getString(R.string.tt_question_fmt), (QuestionView) findViewById(R.id.tt_question_view));
+		
 		if(savedInstanceState != null)
 		{
 			m_test = deserialiseTest(savedInstanceState);
+			TestRunnerState state = savedInstanceState.getParcelable(KEY_STATE);
+			m_testRunner = new TestRunner(m_test);
+			m_testRunner.setState(state);
 		}
 		else
 		{
 			m_test = deserialiseTest(getIntent().getExtras());
+			m_testRunner = new TestRunner(m_test);
 		}
 		
-		m_testRunner = new TestRunner(m_test);
 		
 		m_testRunner.addObserver(m_streakViewController);
 		m_testRunner.addObserver(m_timeBonusController);
+		m_testRunner.addObserver(m_questionViewController);
+		
+		m_testRunner.startNextQuestion();
 	}
 	
 	@Override
@@ -70,6 +105,7 @@ public class TestActivity extends Activity
 	{
 		super.onSaveInstanceState(outState);
 		outState.putParcelableArrayList(KEY_TEST, m_test);
+		outState.putParcelable(KEY_STATE, m_testRunner.getState());
 	}
 
 	@SuppressWarnings("unchecked")
