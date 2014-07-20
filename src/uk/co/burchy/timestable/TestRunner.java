@@ -16,8 +16,8 @@ import uk.co.burchy.timestable.model.Test;
 public class TestRunner {
 	public interface TestRunnerObserver
 	{
-		public void testQuestionAnsweredCorrectly();
-		public void testQuestionAnsweredIncorrectly();
+		public void testQuestionAnsweredCorrectly(Question question, Answer answer);
+		public void testQuestionAnsweredIncorrectly(Question question);
 		public void testStarted();
 		public void testFinished();
 		public void testQuestionAsked(Question question);
@@ -46,20 +46,21 @@ public class TestRunner {
 	{
 		QuestionRecord questionRecord = m_state.getCurrentQuestionRecord();
 		boolean correct = questionRecord.getQuestion().getCorrectAnswer() == answer;
-		questionRecord.setAnswer(new Answer(correct, System.currentTimeMillis()- questionRecord.getStartTime()));
+		Answer answerObject = new Answer(correct, System.currentTimeMillis()- questionRecord.getStartTime());
+		questionRecord.setAnswer(answerObject);
 		
 		if(correct)
 		{
 			for(TestRunnerObserver observer : m_observers)
 			{
-				observer.testQuestionAnsweredCorrectly();
+				observer.testQuestionAnsweredCorrectly(questionRecord.getQuestion(), answerObject);
 			}
 		}
 		else
 		{
 			for(TestRunnerObserver observer : m_observers)
 			{
-				observer.testQuestionAnsweredIncorrectly();
+				observer.testQuestionAnsweredIncorrectly(questionRecord.getQuestion());
 			}
 		}
 	}

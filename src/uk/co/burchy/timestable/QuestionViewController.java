@@ -1,6 +1,7 @@
 package uk.co.burchy.timestable;
 
 import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
+import uk.co.burchy.timestable.model.Answer;
 import uk.co.burchy.timestable.model.Question;
 
 public class QuestionViewController implements TestRunnerObserver
@@ -46,8 +47,8 @@ public class QuestionViewController implements TestRunnerObserver
 		return m_answerBuffer;
 	}
 	
-	@Override public void testQuestionAnsweredCorrectly()	{}
-	@Override public void testQuestionAnsweredIncorrectly() {}
+	@Override public void testQuestionAnsweredCorrectly(Question question, Answer answer)	{}
+	@Override public void testQuestionAnsweredIncorrectly(Question question) {}
 	@Override public void testStarted() {}
 	@Override public void testFinished() {}
 

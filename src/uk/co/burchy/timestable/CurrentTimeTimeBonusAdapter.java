@@ -11,7 +11,6 @@ public class CurrentTimeTimeBonusAdapter implements TimeBonusAdapter
 
 	private long m_maxTime = MAX_TIME;
 	
-	
 	@Override
 	public void timeBonusStartBonus()
 	{
@@ -37,6 +36,10 @@ public class CurrentTimeTimeBonusAdapter implements TimeBonusAdapter
 		{
 			m_maxTime -= DECREMENT;
 		}	
+		else
+		{
+			m_maxTime = MAX_TIME;
+		}
 	}
 
 	@Override
