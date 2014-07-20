@@ -76,4 +76,9 @@ public class TestRunnerState implements Parcelable
 			return new TestRunnerState(source);
 		}
 	};
+
+	public boolean noQuestionsAsked()
+	{
+		return m_currentQuestion == 0;
+	}
 }

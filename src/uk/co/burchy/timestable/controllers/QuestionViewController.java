@@ -55,7 +55,7 @@ public class QuestionViewController implements TestRunnerObserver
 	@Override public void testFinished() {}
 
 	@Override
-	public void testQuestionAsked(Question question)
+	public void testQuestionAsked(Question question, int questionNumber, int totalQuestions)
 	{
 		m_view.displayQuestion(String.format(m_questionFormat, question.getQuestion(), question.getTable()));
 	}

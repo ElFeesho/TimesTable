@@ -78,7 +78,7 @@ public class TimeBonusController implements TestRunnerObserver
 	}
 
 	@Override
-	public void testQuestionAsked(Question question)
+	public void testQuestionAsked(Question question, int questionNumber, int totalQuestions)
 	{
 		m_timeBonusAdapter.timeBonusStartBonus();
 		m_timeBonus.timeBonusDisplay(1.0f);

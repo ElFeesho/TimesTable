@@ -61,6 +61,6 @@ public class AnswerNotifierController implements TestRunnerObserver
 
 	@Override public void testStarted() {}
 	@Override public void testFinished() {}
-	@Override public void testQuestionAsked(Question question) {}
+	@Override public void testQuestionAsked(Question question, int questionNumber, int totalQuestions) {}
 
 }

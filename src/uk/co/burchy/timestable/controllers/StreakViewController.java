@@ -53,7 +53,7 @@ public class StreakViewController implements TestRunnerObserver
 	}
 
 	@Override
-	public void testQuestionAsked(Question question)
+	public void testQuestionAsked(Question question, int questionNumber, int totalQuestions)
 	{
 		
 	}

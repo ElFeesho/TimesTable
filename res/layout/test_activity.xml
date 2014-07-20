@@ -8,7 +8,7 @@
     android:paddingRight="16dp"
     tools:context=".TestActivity" >
 
-    <TextView
+    <uk.co.burchy.timestable.view.CurrentQuestionTextView
         android:id="@+id/test_question_num"
         style="@style/tt_textview_title"
         android:layout_width="match_parent"

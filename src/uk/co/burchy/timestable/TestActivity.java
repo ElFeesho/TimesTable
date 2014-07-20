@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import uk.co.burchy.timestable.controllers.AnswerNotifierController;
 import uk.co.burchy.timestable.controllers.AnswerNotifierController.AnswerNotifierControllerListener;
+import uk.co.burchy.timestable.controllers.CurrentQuestionController;
+import uk.co.burchy.timestable.controllers.CurrentQuestionController.CurrentQuestionView;
 import uk.co.burchy.timestable.controllers.QuestionViewController;
 import uk.co.burchy.timestable.controllers.StreakViewController;
 import uk.co.burchy.timestable.controllers.StreakViewController.StreakView;
@@ -41,6 +43,7 @@ public class TestActivity extends Activity
 	private TestRunner	m_testRunner;
 	private QuestionViewController	m_questionViewController;
 	private AnswerNotifierController	m_answerNotifierController;
+	private CurrentQuestionController	m_currentQuestionController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -83,6 +86,7 @@ public class TestActivity extends Activity
 		m_streakViewController = new StreakViewController((StreakView) findViewById(R.id.test_streak), new EmojiStreakAdapter());
 		m_timeBonusController = new TimeBonusController((TimeBonus) findViewById(R.id.tt_time_bonus), new CurrentTimeTimeBonusAdapter());
 		m_questionViewController = new QuestionViewController(getString(R.string.tt_question_fmt), (QuestionView) findViewById(R.id.tt_question_view));
+		m_currentQuestionController = new CurrentQuestionController((CurrentQuestionView) findViewById(R.id.test_question_num));
 		m_answerNotifierController = new AnswerNotifierController(new PopupWindowAnswerNotifierView(findViewById(android.R.id.content), getLayoutInflater().inflate(R.layout.cv_answer_toast, null), getLayoutInflater().inflate(R.layout.cv_answer_incorrect_toast, null)), new AnswerNotifierControllerListener()
 		{
 			
@@ -124,6 +128,7 @@ public class TestActivity extends Activity
 		m_testRunner.addObserver(m_timeBonusController);
 		m_testRunner.addObserver(m_questionViewController);
 		m_testRunner.addObserver(m_answerNotifierController);
+		m_testRunner.addObserver(m_currentQuestionController);
 		
 		m_testRunner.startNextQuestion();
 	}
