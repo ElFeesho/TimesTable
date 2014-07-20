@@ -3,12 +3,18 @@ package uk.co.burchy.timestable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import uk.co.burchy.timestable.StreakViewController.StreakView;
-import uk.co.burchy.timestable.TimeBonusController.TimeBonus;
+import uk.co.burchy.timestable.controllers.AnswerNotifierController;
+import uk.co.burchy.timestable.controllers.AnswerNotifierController.AnswerNotifierControllerListener;
+import uk.co.burchy.timestable.controllers.QuestionViewController;
+import uk.co.burchy.timestable.controllers.StreakViewController;
+import uk.co.burchy.timestable.controllers.StreakViewController.StreakView;
+import uk.co.burchy.timestable.controllers.TimeBonusController;
+import uk.co.burchy.timestable.controllers.TimeBonusController.TimeBonus;
 import uk.co.burchy.timestable.model.Question;
 import uk.co.burchy.timestable.model.Test;
 import uk.co.burchy.timestable.view.NumPadView;
 import uk.co.burchy.timestable.view.NumPadView.NumPadViewListener;
+import uk.co.burchy.timestable.view.PopupWindowAnswerNotifierView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +40,7 @@ public class TestActivity extends Activity
 
 	private TestRunner	m_testRunner;
 	private QuestionViewController	m_questionViewController;
+	private AnswerNotifierController	m_answerNotifierController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -69,8 +76,6 @@ public class TestActivity extends Activity
 				if(m_questionViewController.getAnswerBuffer().length()>0)
 				{
 					m_testRunner.answerQuestion(Integer.parseInt(m_questionViewController.getAnswerBuffer()));
-					m_questionViewController.clearAnswer();
-					m_testRunner.startNextQuestion();
 				}
 			}
 		});
@@ -78,6 +83,28 @@ public class TestActivity extends Activity
 		m_streakViewController = new StreakViewController((StreakView) findViewById(R.id.test_streak), new EmojiStreakAdapter());
 		m_timeBonusController = new TimeBonusController((TimeBonus) findViewById(R.id.tt_time_bonus), new CurrentTimeTimeBonusAdapter());
 		m_questionViewController = new QuestionViewController(getString(R.string.tt_question_fmt), (QuestionView) findViewById(R.id.tt_question_view));
+		m_answerNotifierController = new AnswerNotifierController(new PopupWindowAnswerNotifierView(findViewById(android.R.id.content), getLayoutInflater().inflate(R.layout.cv_answer_toast, null), getLayoutInflater().inflate(R.layout.cv_answer_incorrect_toast, null)), new AnswerNotifierControllerListener()
+		{
+			
+			@Override
+			public void notificationComplete()
+			{
+				m_questionViewController.clearAnswer();
+				m_testRunner.startNextQuestion();
+			}
+			
+			@Override
+			public void displayingNotificationForIncorrectAnswer()
+			{
+				
+			}
+			
+			@Override
+			public void displayingNotificationForCorrectAnswer()
+			{
+				
+			}
+		});
 		
 		if(savedInstanceState != null)
 		{
@@ -96,6 +123,7 @@ public class TestActivity extends Activity
 		m_testRunner.addObserver(m_streakViewController);
 		m_testRunner.addObserver(m_timeBonusController);
 		m_testRunner.addObserver(m_questionViewController);
+		m_testRunner.addObserver(m_answerNotifierController);
 		
 		m_testRunner.startNextQuestion();
 	}

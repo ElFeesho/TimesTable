@@ -1,6 +1,6 @@
 package uk.co.burchy.timestable;
 
-import uk.co.burchy.timestable.StreakViewController.StreakAdapter;
+import uk.co.burchy.timestable.controllers.StreakViewController.StreakAdapter;
 
 public class EmojiStreakAdapter implements StreakAdapter
 {

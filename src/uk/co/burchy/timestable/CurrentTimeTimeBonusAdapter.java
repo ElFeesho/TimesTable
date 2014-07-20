@@ -1,6 +1,6 @@
 package uk.co.burchy.timestable;
 
-import uk.co.burchy.timestable.TimeBonusController.TimeBonusAdapter;
+import uk.co.burchy.timestable.controllers.TimeBonusController.TimeBonusAdapter;
 
 public class CurrentTimeTimeBonusAdapter implements TimeBonusAdapter
 {

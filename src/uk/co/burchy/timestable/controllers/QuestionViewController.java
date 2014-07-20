@@ -1,5 +1,7 @@
-package uk.co.burchy.timestable;
+package uk.co.burchy.timestable.controllers;
 
+import uk.co.burchy.timestable.QuestionView;
+import uk.co.burchy.timestable.TestRunner;
 import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
 import uk.co.burchy.timestable.model.Answer;
 import uk.co.burchy.timestable.model.Question;

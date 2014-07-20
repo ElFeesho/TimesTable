@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-public class StreakView extends TextView implements uk.co.burchy.timestable.StreakViewController.StreakView
+public class StreakView extends TextView implements uk.co.burchy.timestable.controllers.StreakViewController.StreakView
 {
 
 	public StreakView(Context aContext)

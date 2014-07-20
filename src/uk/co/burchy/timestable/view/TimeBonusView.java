@@ -1,6 +1,6 @@
 package uk.co.burchy.timestable.view;
 
-import uk.co.burchy.timestable.TimeBonusController.TimeBonus;
+import uk.co.burchy.timestable.controllers.TimeBonusController.TimeBonus;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
