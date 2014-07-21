@@ -3,6 +3,7 @@ package uk.co.burchy.timestable.controllers;
 import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
 import uk.co.burchy.timestable.model.Answer;
 import uk.co.burchy.timestable.model.Question;
+import uk.co.burchy.timestable.model.QuestionRecord;
 
 public class CurrentQuestionController implements TestRunnerObserver
 {
@@ -25,7 +26,7 @@ public class CurrentQuestionController implements TestRunnerObserver
 	@Override public void testFinished() {}
 
 	@Override
-	public void testQuestionAsked(Question question, int questionNumber, int totalQuestions)
+	public void testQuestionAsked(QuestionRecord question, int questionNumber, int totalQuestions)
 	{
 		m_view.showCurrentQuestion(questionNumber, totalQuestions);
 	}

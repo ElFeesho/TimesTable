@@ -41,6 +41,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/test_streak"
         android:indeterminate="false" />
+    
+    <uk.co.burchy.timestable.view.ScoreTextView
+        android:id="@+id/tt_score"
+        android:text="Score: 0"
+        android:textSize="24sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tt_time_bonus"/>
+    
 
     <include
         android:id="@+id/test_numpad"

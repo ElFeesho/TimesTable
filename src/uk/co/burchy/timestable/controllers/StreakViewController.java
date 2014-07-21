@@ -4,6 +4,7 @@ import uk.co.burchy.timestable.TestRunner;
 import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
 import uk.co.burchy.timestable.model.Answer;
 import uk.co.burchy.timestable.model.Question;
+import uk.co.burchy.timestable.model.QuestionRecord;
 
 public class StreakViewController implements TestRunnerObserver
 {
@@ -53,7 +54,7 @@ public class StreakViewController implements TestRunnerObserver
 	}
 
 	@Override
-	public void testQuestionAsked(Question question, int questionNumber, int totalQuestions)
+	public void testQuestionAsked(QuestionRecord question, int questionNumber, int totalQuestions)
 	{
 		
 	}
