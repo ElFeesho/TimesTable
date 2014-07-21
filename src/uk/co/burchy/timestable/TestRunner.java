@@ -138,5 +138,10 @@ public class TestRunner {
 	{
 		return m_state.getCurrentQuestion() == m_test.size();
 	}
+
+	public long getTotalDuration()
+	{
+		return m_state.getTotalDuration();
+	}
 	
 }

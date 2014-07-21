@@ -39,6 +39,8 @@ public class ScoreController implements TestRunnerObserver {
 		public long calculateMultiplier();
 		public void questionAnsweredCorrectly();
 		public void questionAnsweredIncorrectly();
+		
+		public long getScore();
 	}
 
 	private ScoreView m_view;
@@ -77,6 +79,11 @@ public class ScoreController implements TestRunnerObserver {
 	@Override
 	public void testQuestionAsked(QuestionRecord question, int questionNumber, int totalQuestions) {
 		
+	}
+	
+	public long getScore()
+	{
+		return m_calculator.getScore();
 	}
 
 }

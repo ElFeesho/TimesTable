@@ -1,8 +1,5 @@
 package uk.co.burchy.timestable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
 import uk.co.burchy.timestable.controllers.AnswerNotifierController;
 import uk.co.burchy.timestable.controllers.AnswerNotifierController.AnswerNotifierControllerListener;
@@ -34,7 +31,7 @@ public class TestFragment extends Fragment implements TestRunnerObserver {
 	
 	public interface TestFragmentListener
 	{
-		public void testComplete();
+		public void testComplete(long score, long totalDuration);
 	}
 	
 	private TestRunner	m_testRunner;
@@ -60,7 +57,7 @@ public class TestFragment extends Fragment implements TestRunnerObserver {
 			}
 			else
 			{
-				m_listener.testComplete();
+				m_listener.testComplete(m_scoreController.getScore(), m_testRunner.getTotalDuration());
 			}
 			
 		}
@@ -161,7 +158,7 @@ public class TestFragment extends Fragment implements TestRunnerObserver {
 
 	@Override
 	public void testFinished() {
-		m_listener.testComplete();
+		m_listener.testComplete(m_scoreController.getScore(), m_testRunner.getTotalDuration());
 	}
 
 	@Override public void testQuestionAnsweredCorrectly(Question question, Answer answer) {}

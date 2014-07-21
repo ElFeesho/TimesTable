@@ -81,4 +81,14 @@ public class TestRunnerState implements Parcelable
 	{
 		return m_currentQuestion == 0;
 	}
+
+	public long getTotalDuration()
+	{
+		long total = 0;
+		for(QuestionRecord record : questionRecords)
+		{
+			total += record.getAnswer().duration;
+		}
+		return total;
+	}
 }

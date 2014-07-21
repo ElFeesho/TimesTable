@@ -47,4 +47,9 @@ public class ScoreCalculator implements ScoreController.ScoreCalculator {
 		m_timeBonusThreshold = 10000;
 	}
 
+	@Override
+	public long getScore()
+	{
+		return m_score;
+	}
 }

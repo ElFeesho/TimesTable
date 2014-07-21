@@ -1,10 +1,6 @@
 package uk.co.burchy.timestable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import uk.co.burchy.timestable.TestFragment.TestFragmentListener;
-import uk.co.burchy.timestable.model.Question;
 import uk.co.burchy.timestable.model.Test;
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +21,7 @@ public class TestActivity extends FragmentActivity
 	private TestFragmentListener m_testFragmentListener = new TestFragmentListener() {
 		
 		@Override
-		public void testComplete() {
+		public void testComplete(long score, long totalDuration) {
 			getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new FinishedFragment(), "finished").commit();
 		}
 	};
@@ -72,19 +68,15 @@ public class TestActivity extends FragmentActivity
 		outState.putParcelableArrayList(KEY_TEST, m_test);
 	}
 
-	@SuppressWarnings("unchecked")
 	private Test deserialiseTest(Bundle bundle)
 	{
-		Test result = new Test();
-		ArrayList<Parcelable> questions = bundle.getParcelableArrayList(KEY_TEST);
-		result.addAll((Collection<? extends Question>) questions);
-		return result;
+		return bundle.getParcelable(KEY_TEST);
 	}
 	
 
 	public static Intent intentForTest(Context context, Test test)
 	{
-		return new Intent(context, TestActivity.class).putExtra(KEY_TEST, test);
+		return new Intent(context, TestActivity.class).putExtra(KEY_TEST, (Parcelable)test);
 	}
 
 }
