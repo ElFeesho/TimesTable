@@ -21,7 +21,7 @@ public class ScoreTextView extends TextView implements ScoreView {
 
 	@Override
 	public void displayScore(long score, long bonus, long multiplier) {
-		setText("Score: "+score);
+		setText("Score: "+score + " "+multiplier + "x + "+bonus);
 	}
 
 }
