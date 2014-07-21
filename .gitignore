@@ -1,7 +1,7 @@
 .settings/
 bin
 gen
-
+assets/*.ttf
 # Built application files
 *.apk
 *.ap_
