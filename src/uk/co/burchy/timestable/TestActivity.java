@@ -26,7 +26,7 @@ public class TestActivity extends FragmentActivity
 		
 		@Override
 		public void testComplete() {
-			getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(android.R.id.content)).commit();
+			getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new FinishedFragment(), "finished").commit();
 		}
 	};
 

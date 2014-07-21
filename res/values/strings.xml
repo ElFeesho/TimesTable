@@ -77,5 +77,9 @@
     <string name="tt_numpad_clear">C</string>
     <string name="tt_numpad_bkspc">⇐</string>
     <string name="tt_numpad_zero">0</string>
+    <string name="tt_finished_message">Well Done!</string>
+    <string name="tt_complete_publish_score_upsell">You completed the test! If you think you did a good job, you can post your highscore to compete against your friends!</string>
+    <string name="tt_publish_score">Publish Score</string>
+    <string name="tt_test_again">Try Another Test</string>
 
 </resources>

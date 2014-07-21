@@ -48,15 +48,21 @@ public class TestFragment extends Fragment implements TestRunnerObserver {
 	
 	private TestFragmentListener m_listener;
 	
-	private List<TestRunnerObserver> 	m_observers = new ArrayList<TestRunner.TestRunnerObserver>();
-	
 	private AnswerNotifierControllerListener m_answerNotifierListener = new AnswerNotifierControllerListener()
 	{
 		@Override
 		public void notificationComplete()
 		{
 			m_questionViewController.clearAnswer();
-			m_testRunner.startNextQuestion();
+			if(!m_testRunner.isComplete())
+			{
+				m_testRunner.startNextQuestion();
+			}
+			else
+			{
+				m_listener.testComplete();
+			}
+			
 		}
 		
 		@Override
@@ -107,7 +113,7 @@ public class TestFragment extends Fragment implements TestRunnerObserver {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.test_activity, container, false);
+		View view = inflater.inflate(R.layout.frag_test, container, false);
 		NumPadView numPad = (NumPadView) view.findViewById(R.id.test_numpad);
 		numPad.setNumPadViewListener(m_numPadListener);
 		
