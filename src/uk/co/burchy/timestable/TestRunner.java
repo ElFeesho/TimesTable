@@ -20,7 +20,7 @@ public class TestRunner {
 		public void testQuestionAnsweredIncorrectly(Question question);
 		public void testStarted();
 		public void testFinished();
-		public void testQuestionAsked(Question question, int questionNumber, int totalQuestions);
+		public void testQuestionAsked(QuestionRecord question, int questionNumber, int totalQuestions);
 	}
 	
 	private HashSet<TestRunnerObserver> m_observers = new HashSet<TestRunnerObserver>();
@@ -34,8 +34,11 @@ public class TestRunner {
 		m_test = test;
 	}
 	
-	public void addObserver(TestRunnerObserver observer) {
-		m_observers.add(observer);
+	public void addObserver(TestRunnerObserver ...observer) {
+		for(TestRunnerObserver obs : observer)
+		{
+			m_observers.add(obs);
+		}
 	}
 	
 	public void removeObserver(TestRunnerObserver observer) {
@@ -74,14 +77,15 @@ public class TestRunner {
 				observer.testStarted();
 			}
 		}
-		if(m_state.getCurrentQuestion() < m_test.size()-1)
+		if(m_state.getCurrentQuestion() < m_test.size())
 		{
 			Question question = m_test.get(m_state.getCurrentQuestion());
-			m_state.addQuestionRecord(new QuestionRecord(question));
+			QuestionRecord questionRecord = new QuestionRecord(question);
+			m_state.addQuestionRecord(questionRecord);
 			m_state.incrementCurrentQuestion();
 			for(TestRunnerObserver observer : m_observers)
 			{
-				observer.testQuestionAsked(question, m_state.getCurrentQuestion(), m_test.size());
+				observer.testQuestionAsked(questionRecord, m_state.getCurrentQuestion(), m_test.size());
 			}
 		}
 		else

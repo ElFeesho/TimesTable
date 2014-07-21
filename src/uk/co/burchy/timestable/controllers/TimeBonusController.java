@@ -4,6 +4,7 @@ import uk.co.burchy.timestable.TestRunner;
 import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
 import uk.co.burchy.timestable.model.Answer;
 import uk.co.burchy.timestable.model.Question;
+import uk.co.burchy.timestable.model.QuestionRecord;
 import android.os.Handler;
 
 public class TimeBonusController implements TestRunnerObserver
@@ -78,7 +79,7 @@ public class TimeBonusController implements TestRunnerObserver
 	}
 
 	@Override
-	public void testQuestionAsked(Question question, int questionNumber, int totalQuestions)
+	public void testQuestionAsked(QuestionRecord question, int questionNumber, int totalQuestions)
 	{
 		m_timeBonusAdapter.timeBonusStartBonus();
 		m_timeBonus.timeBonusDisplay(1.0f);
