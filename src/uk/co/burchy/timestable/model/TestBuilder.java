@@ -29,6 +29,8 @@ public class TestBuilder {
 	private int m_numberOfQuestions = 0;
 	
 	private Random m_numberGen;
+
+	private long	m_seed;
 	
 	/**
 	 * This is the random number generate seed. This allows for the same test to be generated multiple times
@@ -39,6 +41,7 @@ public class TestBuilder {
 	 */
 	public void setSeed(long seed)
 	{
+		m_seed = seed;
 		m_numberGen = new Random(seed); 
 	}
 	
@@ -60,6 +63,8 @@ public class TestBuilder {
 		m_numberOfQuestions = questionCount;
 	}
 	
+	
+	
 	/**
 	 * Builds a {@link Test} instance with an amount of questions defined by the {@link #setNumberOfQuestions(int)} and {@link #addTable(int)}
 	 * 
@@ -80,13 +85,18 @@ public class TestBuilder {
 		
 		if(m_numberGen == null)
 		{
-			m_numberGen = new Random();
+			setSeed(System.currentTimeMillis());
 		}
 		
 		Test result = new Test();
-		
+		String tableString = "";
+		String sep = "";
 		for(Integer targetTable : m_targetTables)
 		{
+			tableString += sep;
+			tableString += targetTable;
+			sep = ", ";
+			
 			for(int i = 0; i < m_numberOfQuestions; i++)
 			{
 				result.add(new Question(m_numberGen.nextInt(MAX_TABLE_QUESTION)+1, targetTable));
@@ -94,6 +104,8 @@ public class TestBuilder {
 		}
 	
 		Collections.shuffle(result, m_numberGen);
+		
+		result.setSeed(m_seed);
 		
 		return result;
 	}
