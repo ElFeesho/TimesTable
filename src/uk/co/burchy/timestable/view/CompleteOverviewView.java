@@ -34,8 +34,20 @@ public class CompleteOverviewView extends TableLayout {
 	public void setOverview(long score, long time, int correct, int wrong)
 	{
 		m_score.setText(score+"");
-		m_time.setText(time+"");
+		m_time.setText(formatTime(time));
 		m_correct.setText(correct+"");
 		m_wrong.setText(wrong+"");
+	}
+
+	private CharSequence formatTime(long ms)
+	{
+		long hours = ms / 3600000;
+		ms -= 3600000 * hours;
+		long minutes = ms / 60000;
+		ms -= minutes * 60000;
+		long seconds = ms / 1000;
+		ms -= seconds * 1000;
+		
+		return String.format("%02d:%02d:%02d.%d", hours, minutes, seconds, ms);
 	}
 }
