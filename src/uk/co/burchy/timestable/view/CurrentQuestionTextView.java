@@ -4,9 +4,8 @@ import uk.co.burchy.timestable.R;
 import uk.co.burchy.timestable.controllers.CurrentQuestionController.CurrentQuestionView;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
-public class CurrentQuestionTextView extends TextView implements CurrentQuestionView
+public class CurrentQuestionTextView extends SuperTextView implements CurrentQuestionView
 {
 
 	public CurrentQuestionTextView(Context context)

@@ -4,34 +4,105 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <uk.co.burchy.timestable.view.SuperTextView
         style="@style/tt_textview_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tt_finished_message" />
-    
-    <TextView 
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:padding="8dp"
-        android:text="@string/tt_complete_publish_score_upsell"/>
+        android:text="@string/tt_complete_publish_score_upsell"
+        android:textSize="20sp" />
 
-    <View android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-    
-    <Button android:id="@+id/tt_publish_score"
-        android:layout_width="180dp"
-        android:layout_gravity="center"
+    <TableLayout
+        android:id="@+id/tt_complete_overview"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tt_publish_score"
-        />
-    
-    <Button android:id="@+id/tt_take_another"
-        android:layout_width="180dp"
         android:layout_gravity="center"
-        android:layout_height="wrap_content" 
+        android:orientation="vertical" >
+
+        <TableRow>
+
+            <uk.co.burchy.view.SuperTextView
+                android:id="@+id/tt_score_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score" />
+
+            <TextView
+                android:id="@+id/tt_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+        </TableRow>
+
+        <TableRow>
+
+            <uk.co.burchy.view.SuperTextView
+                android:id="@+id/tt_time_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time" />
+
+            <TextView
+                android:id="@+id/tt_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00:00.000" />
+        </TableRow>
+
+        <TableRow>
+
+            <uk.co.burchy.view.SuperTextView
+                android:id="@+id/tt_correct_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correct" />
+
+            <TextView
+                android:id="@+id/tt_correct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+        </TableRow>
+
+        <TableRow>
+
+            <uk.co.burchy.view.SuperTextView
+                android:id="@+id/tt_wrong_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wrong" />
+
+            <TextView
+                android:id="@+id/tt_wrong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/tt_publish_score"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/tt_publish_score" />
+
+    <Button
+        android:id="@+id/tt_take_another"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginBottom="32dp"
-        android:text="@string/tt_test_again"/>
+        android:text="@string/tt_test_again" />
+
 </LinearLayout>

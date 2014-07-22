@@ -34,10 +34,12 @@
         android:layout_height="0dp"
         android:layout_above="@+id/tt_no_of_questions_label"
         android:layout_below="@+id/tt_tables_to_test_label"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:horizontalSpacing="3dp"
         android:numColumns="3"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
         android:verticalSpacing="3dp"
         tools:listitem="@layout/li_table" />
 

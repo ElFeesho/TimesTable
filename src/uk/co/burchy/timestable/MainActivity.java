@@ -72,6 +72,8 @@ public class MainActivity extends Activity
 			{
 				updateTotalQuestionsLabel();
 				m_listSelectedTables.refreshDrawableState();
+				
+				view.animate().rotationYBy(360.0f).setDuration(600).start();
 
 			}
 		});
