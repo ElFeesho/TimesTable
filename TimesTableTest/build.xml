@@ -1,0 +1,8 @@
+<?xml encoding="utf-8"?>
+<project name="Example" xmlns:jacoco="antlib:org.jacoco.ant">
+
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="libs/jacocoant.jar"/>
+    </taskdef>
+    
+</project>

@@ -1,6 +1,7 @@
 .settings/
 bin
 gen
+TimesTableTest/libs/*.jar
 assets/*.ttf
 # Built application files
 *.apk
