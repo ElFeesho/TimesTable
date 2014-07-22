@@ -17,73 +17,12 @@
         android:text="@string/tt_complete_publish_score_upsell"
         android:textSize="20sp" />
 
-    <TableLayout
+    <include
         android:id="@+id/tt_complete_overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical" >
-
-        <TableRow>
-
-            <uk.co.burchy.view.SuperTextView
-                android:id="@+id/tt_score_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Score" />
-
-            <TextView
-                android:id="@+id/tt_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </TableRow>
-
-        <TableRow>
-
-            <uk.co.burchy.view.SuperTextView
-                android:id="@+id/tt_time_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time" />
-
-            <TextView
-                android:id="@+id/tt_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0:00:00.000" />
-        </TableRow>
-
-        <TableRow>
-
-            <uk.co.burchy.view.SuperTextView
-                android:id="@+id/tt_correct_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Correct" />
-
-            <TextView
-                android:id="@+id/tt_correct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </TableRow>
-
-        <TableRow>
-
-            <uk.co.burchy.view.SuperTextView
-                android:id="@+id/tt_wrong_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wrong" />
-
-            <TextView
-                android:id="@+id/tt_wrong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </TableRow>
-    </TableLayout>
+        layout="@layout/cv_complete_overview" />
 
     <View
         android:layout_width="0dp"

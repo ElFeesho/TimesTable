@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 public class TestActivity extends FragmentActivity
@@ -21,8 +22,15 @@ public class TestActivity extends FragmentActivity
 	private TestFragmentListener m_testFragmentListener = new TestFragmentListener() {
 		
 		@Override
-		public void testComplete(long score, long totalDuration) {
-			getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new FinishedFragment(), "finished").commit();
+		public void testComplete(long score, long totalDuration, int correct, int wrong) {
+			Bundle args = new Bundle();
+			args.putLong(FinishedFragment.KEY_SCORE, score);
+			args.putLong(FinishedFragment.KEY_TIME, totalDuration);
+			args.putInt(FinishedFragment.KEY_CORRECT, correct);
+			args.putInt(FinishedFragment.KEY_WRONG, wrong);
+			Fragment finishedFrag = new FinishedFragment();
+			finishedFrag.setArguments(args);
+			getSupportFragmentManager().beginTransaction().replace(android.R.id.content, finishedFrag, "finished").commit();
 		}
 	};
 

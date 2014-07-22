@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uk.co.burchy.timestable.view.CompleteOverviewView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tt_complete_overview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TableRow>
+
+        <uk.co.burchy.timestable.view.SuperTextView
+            android:id="@+id/tt_score_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tt_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+    </TableRow>
+
+    <TableRow>
+
+        <uk.co.burchy.timestable.view.SuperTextView
+            android:id="@+id/tt_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0:00:00.000" />
+    </TableRow>
+
+    <TableRow>
+
+        <uk.co.burchy.timestable.view.SuperTextView
+            android:id="@+id/tt_correct_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correct"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tt_correct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+    </TableRow>
+
+    <TableRow>
+
+        <uk.co.burchy.timestable.view.SuperTextView
+            android:id="@+id/tt_wrong_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wrong"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tt_wrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+    </TableRow>
+
+</uk.co.burchy.timestable.view.CompleteOverviewView>

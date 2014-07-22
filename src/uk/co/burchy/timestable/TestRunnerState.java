@@ -1,6 +1,8 @@
 package uk.co.burchy.timestable;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import uk.co.burchy.timestable.model.QuestionRecord;
@@ -90,5 +92,30 @@ public class TestRunnerState implements Parcelable
 			total += record.getAnswer().duration;
 		}
 		return total;
+	}
+
+	public int getCorrectCount() {
+		int count = 0;
+		for(int i = 0; i < questionRecords.size(); i++)
+		{
+			if(questionRecords.get(i).getAnswer().correct)
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public int getWrongCount()
+	{
+		int count = 0;
+		for(int i = 0; i < questionRecords.size(); i++)
+		{
+			if(!questionRecords.get(i).getAnswer().correct)
+			{
+				count++;
+			}
+		}
+		return count;
 	}
 }

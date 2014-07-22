@@ -144,4 +144,14 @@ public class TestRunner {
 		return m_state.getTotalDuration();
 	}
 	
+	public int getCorrectCount()
+	{
+		return m_state.getCorrectCount();
+	}
+	
+	public int getWrongCount()
+	{
+		return m_state.getWrongCount();
+	}
+	
 }

@@ -31,7 +31,7 @@ public class TestFragment extends Fragment implements TestRunnerObserver {
 	
 	public interface TestFragmentListener
 	{
-		public void testComplete(long score, long totalDuration);
+		public void testComplete(long score, long totalDuration, int correct, int wrong);
 	}
 	
 	private TestRunner	m_testRunner;
@@ -57,7 +57,7 @@ public class TestFragment extends Fragment implements TestRunnerObserver {
 			}
 			else
 			{
-				m_listener.testComplete(m_scoreController.getScore(), m_testRunner.getTotalDuration());
+				m_listener.testComplete(m_scoreController.getScore(), m_testRunner.getTotalDuration(), m_testRunner.getCorrectCount(), m_testRunner.getWrongCount());
 			}
 			
 		}
@@ -158,7 +158,7 @@ public class TestFragment extends Fragment implements TestRunnerObserver {
 
 	@Override
 	public void testFinished() {
-		m_listener.testComplete(m_scoreController.getScore(), m_testRunner.getTotalDuration());
+		m_listener.testComplete(m_scoreController.getScore(), m_testRunner.getTotalDuration(), m_testRunner.getCorrectCount(), m_testRunner.getWrongCount());
 	}
 
 	@Override public void testQuestionAnsweredCorrectly(Question question, Answer answer) {}
