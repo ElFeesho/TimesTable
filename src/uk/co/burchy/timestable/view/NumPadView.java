@@ -39,10 +39,6 @@ public class NumPadView extends RelativeLayout {
 	public NumPadView(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
-
-	public NumPadView(Context context) {
-		this(context, null, 0);
-	}
 	
 	@Override
 	protected void onFinishInflate() {

@@ -8,6 +8,10 @@ assets/*.ttf
 *.apk
 *.ap_
 
+*/testReports/*
+*/*.exec
+*/coverageReport/*
+
 # Files for the Dalvik VM
 *.dex
 

@@ -7,11 +7,6 @@ import android.widget.TextView;
 public class StreakView extends TextView implements uk.co.burchy.timestable.controllers.StreakViewController.StreakView
 {
 
-	public StreakView(Context aContext)
-	{
-		this(aContext, null, 0);
-	}
-
 	public StreakView(Context aContext, AttributeSet aAttrs)
 	{
 		this(aContext, aAttrs, 0);

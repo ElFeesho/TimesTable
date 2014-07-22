@@ -1,6 +1,7 @@
 package uk.co.burchy.timestable.controllers;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -13,7 +14,7 @@ import uk.co.burchy.timestable.controllers.StreakViewController.StreakAdapter;
 import uk.co.burchy.timestable.controllers.StreakViewController.StreakView;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest=Config.NONE)
+@Config(manifest="../AndroidManifest.xml")
 public class StreakViewControllerTest
 {
 	private static final String	RIGHT_ANSWER	= "right_answer";
@@ -23,10 +24,12 @@ public class StreakViewControllerTest
 	private static class FakeStreakView implements StreakView
 	{
 		public String	lastSetIcon	= null;
+		public boolean	streakViewShowStreakIcon_called = false;
 
 		@Override
 		public void streakViewShowStreakIcon(String aIcon)
 		{
+			streakViewShowStreakIcon_called  = true;
 			lastSetIcon = aIcon;
 		}
 	}
@@ -118,5 +121,22 @@ public class StreakViewControllerTest
 		controller.testQuestionAnsweredIncorrectly(null);
 
 		assertEquals(fakeView.lastSetIcon, WRONG_ANSWER);
+	}
+
+	// Code coverage? Yes please!
+	@Test
+	public void whenATestCompletes_thereIsNoInteractionWithTheStreakView()
+	{
+		controller.testFinished();
+		
+		assertFalse(fakeView.streakViewShowStreakIcon_called);
+	}
+	
+	@Test
+	public void whenAQuestionIsAsked_thereIsNoInteractionWithTheStreakView()
+	{
+		controller.testQuestionAsked(null, 1, 2);;
+		
+		assertFalse(fakeView.streakViewShowStreakIcon_called);
 	}
 }

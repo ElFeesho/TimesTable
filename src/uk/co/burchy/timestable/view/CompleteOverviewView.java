@@ -13,10 +13,6 @@ public class CompleteOverviewView extends TableLayout {
 	private TextView m_correct;
 	private TextView m_wrong;
 
-	public CompleteOverviewView(Context context) {
-		this(context, null);
-	}
-
 	public CompleteOverviewView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}

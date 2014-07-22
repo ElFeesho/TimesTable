@@ -8,11 +8,6 @@ import android.util.AttributeSet;
 public class CurrentQuestionTextView extends SuperTextView implements CurrentQuestionView
 {
 
-	public CurrentQuestionTextView(Context context)
-	{
-		this(context, null, 0);
-	}
-
 	public CurrentQuestionTextView(Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);

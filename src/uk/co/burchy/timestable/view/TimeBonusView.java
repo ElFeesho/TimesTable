@@ -8,11 +8,6 @@ import android.widget.ProgressBar;
 public class TimeBonusView extends ProgressBar implements TimeBonus
 {
 
-	public TimeBonusView(Context aContext)
-	{
-		this(aContext, null, 0);
-	}
-
 	public TimeBonusView(Context aContext, AttributeSet aAttrs)
 	{
 		this(aContext, aAttrs, 0);

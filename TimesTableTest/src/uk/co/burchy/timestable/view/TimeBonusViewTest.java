@@ -15,7 +15,7 @@ public class TimeBonusViewTest
 	@Test
 	public void whenTheTimeLeftForATimebonusIsSet_TheProgressBarReflectsTHeValue() throws Exception
 	{
-		TimeBonusView tbv = new TimeBonusView(Robolectric.application);
+		TimeBonusView tbv = new TimeBonusView(Robolectric.application, null);
 		tbv.timeBonusDisplay(0.5f);;
 		assertEquals(tbv.getProgress(), tbv.getMax()/2);
 	}

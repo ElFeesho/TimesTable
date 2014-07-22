@@ -17,7 +17,7 @@ public class CurrentQuestionTextViewTest
 	@Test
 	public void whenCurrentQuestionIsSet_TextIsDisplayedAsExpected() throws Exception
 	{
-		CurrentQuestionTextView currentQuestion = new CurrentQuestionTextView(Robolectric.application);
+		CurrentQuestionTextView currentQuestion = new CurrentQuestionTextView(Robolectric.application, null);
 		currentQuestion.showCurrentQuestion(2, 3);
 		String expected = Robolectric.application.getString(R.string.tt_try_question__of__, 2, 3);
 		assertEquals(currentQuestion.getText(), expected);

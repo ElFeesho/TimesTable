@@ -15,7 +15,7 @@ public class StreakViewTest
 	@Test
 	public void whenTheStreakViewIsAskedToDisplayAnIcon_TheTextIsSetToTheIconValue() throws Exception
 	{
-		StreakView streakView = new StreakView(Robolectric.application);
+		StreakView streakView = new StreakView(Robolectric.application, null);
 		streakView.streakViewShowStreakIcon("test");
 		assertEquals(streakView.getText(), "test");
 	}

@@ -12,25 +12,50 @@
 
     <target name="compile">
     	<mkdir dir="bin"/>
-    	<!--ant antfile="build.xml" target="debug" dir=".." /-->
+    	<ant antfile="build.xml" target="debug" dir=".." />
     	<javac srcdir="src" destdir="bin" classpath="libs/junit-4.11.jar:libs/robolectric-2.4.2.jar:../bin/classes:libs/android-16.jar"/>
     </target>
     
     <target name="test" depends="compile">
+    	<delete dir="testReports"/>
+    	<mkdir dir="testReports"/>
     	<jacoco:coverage>
 		    <junit fork="true" forkmode="once">
-		        <batchtest>
+  				<formatter type="plain"/>
+		        <batchtest todir="testReports">
 		        	<fileset dir="src">
 				      <include name="**/*Test*.java"/>
 				    </fileset>
 		        </batchtest>
 		        <classpath>
-		            <pathelement location="../bin"/>
+		            <pathelement location="../bin/classes"/>
 		            <pathelement location="libs/junit-4.11.jar"/>
+		            <pathelement location="libs/hamcrest-all-1.3.jar"/>
+		            <pathelement location="libs/robolectric-2.4.2.jar"/>
+		            <pathelement location="libs/android-16.jar"/>
 		            <pathelement location="bin"/>
 		        </classpath>
 		    </junit>
 		</jacoco:coverage>
+
+		<jacoco:report>
+                        
+		    <executiondata>
+		        <file file="jacoco.exec"/>
+		    </executiondata>
+		                        
+		    <structure name="Times Table Project">
+		        <classfiles>
+		            <fileset dir="../bin/classes"/>
+		        </classfiles>
+		        <sourcefiles encoding="UTF-8">
+		            <fileset dir="../src"/>
+		        </sourcefiles>
+		    </structure>
+		                        
+		    <html destdir="coverageReport"/>
+		                        
+		</jacoco:report>
     </target>
 
 </project>

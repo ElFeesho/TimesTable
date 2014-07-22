@@ -9,11 +9,6 @@ import android.widget.TextView;
 public class SuperTextView extends TextView
 {
 
-	public SuperTextView(Context context)
-	{
-		this(context, null, 0);
-	}
-
 	public SuperTextView(Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);

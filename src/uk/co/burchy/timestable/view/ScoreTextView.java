@@ -7,10 +7,6 @@ import android.widget.TextView;
 
 public class ScoreTextView extends TextView implements ScoreView {
 
-	public ScoreTextView(Context context) {
-		this(context, null, 0);
-	}
-
 	public ScoreTextView(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
