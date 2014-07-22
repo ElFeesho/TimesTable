@@ -1,6 +1,7 @@
 .settings/
 bin
 gen
+build.xml
 TimesTableTest/libs/*.jar
 assets/*.ttf
 # Built application files

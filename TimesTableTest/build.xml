@@ -1,8 +1,36 @@
-<?xml encoding="utf-8"?>
-<project name="Example" xmlns:jacoco="antlib:org.jacoco.ant">
+<?xml version="1.0" encoding="utf-8"?>
+<project name="TimesTableTest" xmlns:jacoco="antlib:org.jacoco.ant">
 
     <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="libs/jacocoagent.jar"/>
         <classpath path="libs/jacocoant.jar"/>
     </taskdef>
+
+    <target name="clean">
+    	<delete dir="bin"/>
+    </target>
+
+    <target name="compile">
+    	<mkdir dir="bin"/>
+    	<!--ant antfile="build.xml" target="debug" dir=".." /-->
+    	<javac srcdir="src" destdir="bin" classpath="libs/junit-4.11.jar:libs/robolectric-2.4.2.jar:../bin/classes:libs/android-16.jar"/>
+    </target>
     
+    <target name="test" depends="compile">
+    	<jacoco:coverage>
+		    <junit fork="true" forkmode="once">
+		        <batchtest>
+		        	<fileset dir="src">
+				      <include name="**/*Test*.java"/>
+				    </fileset>
+		        </batchtest>
+		        <classpath>
+		            <pathelement location="../bin"/>
+		            <pathelement location="libs/junit-4.11.jar"/>
+		            <pathelement location="bin"/>
+		        </classpath>
+		    </junit>
+		</jacoco:coverage>
+    </target>
+
 </project>
