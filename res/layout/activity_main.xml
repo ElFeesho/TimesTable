@@ -1,20 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
     tools:context=".MainActivity" >
 
     <uk.co.burchy.timestable.view.SuperTextView
         android:id="@+id/tt_title"
         style="@style/tt_textview_title"
+        android:textColor="@color/tt_primary_light_colour"
+        android:background="@color/tt_primary_dark_colour"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:text="@string/tt_title" />
 
     <TextView
@@ -84,12 +85,13 @@
         android:textSize="20sp" />
 
     <Button
+        android:background="@color/tt_primary_dark_colour"
+        android:textColor="#fff"
         android:id="@+id/tt_start_test"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="12dp"
         android:layout_marginTop="12dp"
         android:text="@string/tt_button_start"
         android:textSize="25sp" />

@@ -1,16 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    tools:context=".TestActivity" >
+    android:layout_height="match_parent">
 
     <uk.co.burchy.timestable.view.CurrentQuestionTextView
         android:id="@+id/test_question_num"
+        android:background="@color/tt_primary_dark_colour"
         style="@style/tt_textview_title"
         android:layout_width="match_parent"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"

@@ -5,7 +5,7 @@
     <string name="menu_settings">Settings</string>
     <string name="tt_title">Times Table Test</string>
     <string name="tt_no_of_questions">Questions per table:</string>
-    <string name="tt_tables_to_test">Choose the timetables you want to practise:</string>
+    <string name="tt_tables_to_test">Choose your times tables:</string>
     <string name="tt_try_question__of__">Try question %1$d of %2$d</string>
     
     <string name="tt_correct_answers">Correct Answers: </string>
