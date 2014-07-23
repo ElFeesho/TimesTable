@@ -88,6 +88,8 @@ public class TestBuilder {
 			setSeed(System.currentTimeMillis());
 		}
 		
+		Collections.sort(m_targetTables);
+		
 		Test result = new Test();
 		String tableString = "";
 		String sep = "";

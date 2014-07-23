@@ -70,4 +70,9 @@ public class Question implements Parcelable {
 		m_table		= in.readInt();
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		return (o instanceof Question) && ((Question)o).m_question == m_question && ((Question)o).m_table == m_table;
+	}
+	
 }
