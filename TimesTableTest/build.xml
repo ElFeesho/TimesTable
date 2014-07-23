@@ -13,7 +13,7 @@
     <target name="compile">
     	<mkdir dir="bin"/>
     	<ant antfile="build.xml" target="debug" dir=".." />
-    	<javac srcdir="src" destdir="bin" classpath="libs/junit-4.11.jar:libs/robolectric-2.4.2.jar:../bin/classes:libs/android-16.jar"/>
+    	<javac srcdir="src" destdir="bin" classpath="libs/junit-4.11.jar:libs/robolectric-2.2-jar-with-dependencies.jar:../bin/classes:libs/android-16.jar"/>
     </target>
     
     <target name="test" depends="compile">
@@ -31,7 +31,7 @@
 		            <pathelement location="../bin/classes"/>
 		            <pathelement location="libs/junit-4.11.jar"/>
 		            <pathelement location="libs/hamcrest-all-1.3.jar"/>
-		            <pathelement location="libs/robolectric-2.4.2.jar"/>
+		            <pathelement location="libs/robolectric-2.2-jar-with-dependencies.jar"/>
 		            <pathelement location="libs/android-16.jar"/>
 		            <pathelement location="bin"/>
 		        </classpath>

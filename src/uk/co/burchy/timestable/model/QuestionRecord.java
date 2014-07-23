@@ -10,10 +10,10 @@ public class QuestionRecord implements Parcelable
 	
 	private long m_startTime;
 	
-	public QuestionRecord(Question question)
+	public QuestionRecord(Question question, long startTime)
 	{
 		m_question = question;
-		m_startTime = System.currentTimeMillis();
+		m_startTime = startTime;
 	}
 	
 	public void setAnswer(Answer answer)
@@ -72,5 +72,32 @@ public class QuestionRecord implements Parcelable
 			return new QuestionRecord(source);
 		}
 	};
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof QuestionRecord)
+		{
+			QuestionRecord rhs = (QuestionRecord)o;
+			if(rhs.getAnswer() == null)
+			{
+				if(getAnswer() != null)
+				{
+					return false;
+				}
+			}
+			else 
+			{
+				if(!rhs.getAnswer().equals(getAnswer()))
+				{
+					return false;
+				}
+			}
+			
+			return rhs.getQuestion().equals(getQuestion()) && rhs.getStartTime() == getStartTime();
+		}
+		
+		return false;
+	}
+	
 	
 }

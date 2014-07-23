@@ -92,7 +92,7 @@ public class TestRunner {
 		if(m_state.getCurrentQuestion() < m_test.size())
 		{
 			Question question = m_test.get(m_state.getCurrentQuestion());
-			QuestionRecord questionRecord = new QuestionRecord(question);
+			QuestionRecord questionRecord = new QuestionRecord(question, System.currentTimeMillis());
 			m_state.addQuestionRecord(questionRecord);
 			m_state.incrementCurrentQuestion();
 			broadcastCurrentQuestion(questionRecord);

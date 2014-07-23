@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
@@ -27,8 +26,7 @@ public class TestTest {
 		
 		uk.co.burchy.timestable.model.Test outputTest = uk.co.burchy.timestable.model.Test.CREATOR.createFromParcel(outputParcel);
 		
-		// FIXME: Should work? It's not though, could be Robolectric?
-		//assertEquals(test.getSeed(), outputTest.getSeed());
+		assertEquals(test.getSeed(), outputTest.getSeed());
 	}
 	
 	@Test
@@ -42,6 +40,14 @@ public class TestTest {
 		
 		uk.co.burchy.timestable.model.Test outputTest = uk.co.burchy.timestable.model.Test.CREATOR.createFromParcel(outputParcel);
 		
-		// assertEquals(test.getTables(), outputTest.getTables());
+		assertEquals(test.getTables(), outputTest.getTables());
+	}
+	
+	@Test
+	public void theCreatorCanBeUsedToCreateAnArrayCapableOfHoldingTests() throws Exception
+	{
+		uk.co.burchy.timestable.model.Test[] testArray = uk.co.burchy.timestable.model.Test.CREATOR.newArray(5);
+		
+		assertEquals(5, testArray.length);
 	}
 }

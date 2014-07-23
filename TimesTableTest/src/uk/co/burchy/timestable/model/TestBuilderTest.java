@@ -1,11 +1,13 @@
 package uk.co.burchy.timestable.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+
+import uk.co.burchy.timestable.model.TestBuilder.TestBuilderConfigurationException;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest="../AndroidManifest.xml")
@@ -108,8 +110,29 @@ public class TestBuilderTest {
 	
 	@Test
 	public void creatingATestWhenNoSeedHasBeenSet_theCurrentTimeIsUsedAsTheSeed() throws Exception {
+		TestBuilder testTestBuilder = new TestBuilder();
+		
+		testTestBuilder.addTable(1);
+		testTestBuilder.setNumberOfQuestions(3);
+		
 		long currentTime = System.currentTimeMillis();
-		// FIXME!
+		uk.co.burchy.timestable.model.Test builtTest = testTestBuilder.build();
+		
+		assertEquals(builtTest.getSeed(), currentTime);
+	}
+
+	@Test(expected=TestBuilderConfigurationException.class)
+	public void attemptingToBuildATestWhenNoNumberOfQuestionsSpecified_ResultsInExceptionBeingThrown() throws Exception {
+		TestBuilder testBuilder = new TestBuilder();
+		testBuilder.addTable(1);
+		testBuilder.build();
+	}
+	
+	@Test(expected=TestBuilderConfigurationException.class)
+	public void attemptingToBuildATestWhenNoTablesAdded_ResultsInExceptionBeingThrown() throws Exception {
+		TestBuilder testBuilder = new TestBuilder();
+		testBuilder.setNumberOfQuestions(1);
+		testBuilder.build();
 	}
 
 	private void assertTestsAreEqual(uk.co.burchy.timestable.model.Test testOne,

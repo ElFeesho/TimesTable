@@ -52,5 +52,14 @@ public class Answer implements Parcelable
 		}
 	};
 	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Answer)
+		{
+			Answer rhs = (Answer)o;
+			return rhs.correct == correct && rhs.duration == duration;
+		}
+		return false;
+	}
 
 }
