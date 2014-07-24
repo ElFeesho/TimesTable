@@ -1,6 +1,7 @@
 package uk.co.burchy.timestable.controllers;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,16 +11,19 @@ import uk.co.burchy.timestable.controllers.CurrentQuestionController.CurrentQues
 public class CurrentQuestionControllerTest
 {
 
+
 	public static class FakeCurrentQuestionView implements CurrentQuestionView
 	{
 		public int	m_questionNumber;
 		public int	m_totalQuestions;
+		public boolean	showCurrentQuestion_called;
 		
 		@Override
 		public void showCurrentQuestion(int aQuestionNumber, int aTotalQuestions)
 		{
 			m_questionNumber = aQuestionNumber;
 			m_totalQuestions = aTotalQuestions;
+			showCurrentQuestion_called = true;
 		}		
 	}
 
@@ -47,5 +51,32 @@ public class CurrentQuestionControllerTest
 		assertEquals(10, view.m_totalQuestions);
 	}
 
+	@Test
+	public void whenATestStarts_TheCurrentQuestionControllerDoesNotNotifyTheCurrentQuestionView() throws Exception
+	{
+		currentQuestionController.testStarted();
+		assertFalse(view.showCurrentQuestion_called);
+	}
+
+	@Test
+	public void whenATestFinished_TheCurrentQuestionControllerDoesNotNotifyTheCurrentQuestionView() throws Exception
+	{
+		currentQuestionController.testFinished();
+		assertFalse(view.showCurrentQuestion_called);
+	}
+	
+	@Test
+	public void whenATestQuestionAnsweredIncorrectly_TheCurrentQuestionControllerDoesNotNotifyTheCurrentQuestionView() throws Exception
+	{
+		currentQuestionController.testQuestionAnsweredIncorrectly(null);
+		assertFalse(view.showCurrentQuestion_called);
+	}
+	
+	@Test
+	public void whenATestQuestionAnsweredCorrectly_TheCurrentQuestionControllerDoesNotNotifyTheCurrentQuestionView() throws Exception
+	{
+		currentQuestionController.testQuestionAnsweredCorrectly(null, null);
+		assertFalse(view.showCurrentQuestion_called);
+	}
 
 }
