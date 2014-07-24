@@ -1,7 +1,5 @@
 package uk.co.burchy.timestable.controllers;
 
-import uk.co.burchy.timestable.QuestionView;
-import uk.co.burchy.timestable.TestRunner;
 import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
 import uk.co.burchy.timestable.model.Answer;
 import uk.co.burchy.timestable.model.Question;
@@ -9,6 +7,14 @@ import uk.co.burchy.timestable.model.QuestionRecord;
 
 public class QuestionViewController implements TestRunnerObserver
 {
+	public interface QuestionView
+	{
+		public void displayQuestion(String question);
+
+		public void displayAnswer(String answer);
+
+	}
+	
 	private QuestionView	m_view;
 	private String m_questionFormat;
 	private String	m_answerBuffer = "";

@@ -6,6 +6,7 @@ import uk.co.burchy.timestable.controllers.AnswerNotifierController.AnswerNotifi
 import uk.co.burchy.timestable.controllers.CurrentQuestionController;
 import uk.co.burchy.timestable.controllers.CurrentQuestionController.CurrentQuestionView;
 import uk.co.burchy.timestable.controllers.QuestionViewController;
+import uk.co.burchy.timestable.controllers.QuestionViewController.QuestionView;
 import uk.co.burchy.timestable.controllers.ScoreController;
 import uk.co.burchy.timestable.controllers.ScoreController.ScoreView;
 import uk.co.burchy.timestable.controllers.StreakViewController;

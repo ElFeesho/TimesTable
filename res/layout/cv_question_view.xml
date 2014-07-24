@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<uk.co.burchy.timestable.QuestionView xmlns:android="http://schemas.android.com/apk/res/android"
+<uk.co.burchy.timestable.TextViewQuestionView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tt_answer_container"
     android:layout_width="match_parent"
@@ -31,4 +31,4 @@
         android:paddingTop="20dp"
         android:textSize="35sp" />
 
-</uk.co.burchy.timestable.QuestionView>
+</uk.co.burchy.timestable.TextViewQuestionView>
