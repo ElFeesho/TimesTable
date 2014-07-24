@@ -24,12 +24,6 @@ public class CurrentTimeTimeBonusAdapter implements TimeBonusAdapter
 	}
 
 	@Override
-	public boolean timeBonusEarnt()
-	{
-		return timeBonusTimeLeft() > 0.0f;
-	}
-
-	@Override
 	public void timeBonusQuestionCorrect()
 	{
 		if(m_maxTime > MIN_TIME)

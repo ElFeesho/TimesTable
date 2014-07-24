@@ -118,7 +118,7 @@ public class TestFragment extends Fragment implements TestRunnerObserver {
 		PopupWindowAnswerNotifierView notifierView = new PopupWindowAnswerNotifierView(getActivity().findViewById(android.R.id.content), inflater.inflate(R.layout.cv_answer_toast, container, false), inflater.inflate(R.layout.cv_answer_incorrect_toast, container, false));
 		
 		m_streakViewController = new StreakViewController((StreakView) view.findViewById(R.id.test_streak), new EmojiStreakAdapter());
-		m_timeBonusController = new TimeBonusController((TimeBonus) view.findViewById(R.id.tt_time_bonus), new CurrentTimeTimeBonusAdapter());
+		m_timeBonusController = new TimeBonusController((TimeBonus) view.findViewById(R.id.tt_time_bonus), new CurrentTimeTimeBonusAdapter(), new HandlerInvocationRepeater());
 		m_questionViewController = new QuestionViewController(getString(R.string.tt_question_fmt), (QuestionView) view.findViewById(R.id.tt_question_view));
 		m_currentQuestionController = new CurrentQuestionController((CurrentQuestionView) view.findViewById(R.id.test_question_num));
 		m_scoreController = new ScoreController((ScoreView)view.findViewById(R.id.tt_score), new ScoreCalculator());		

@@ -1,14 +1,17 @@
 package uk.co.burchy.timestable.controllers;
 
-import uk.co.burchy.timestable.TestRunner;
 import uk.co.burchy.timestable.TestRunner.TestRunnerObserver;
 import uk.co.burchy.timestable.model.Answer;
 import uk.co.burchy.timestable.model.Question;
 import uk.co.burchy.timestable.model.QuestionRecord;
-import android.os.Handler;
 
 public class TimeBonusController implements TestRunnerObserver
 {
+	public interface InvocationRepeater
+	{
+		public void startRepeating(Runnable runnable, long delay);
+		public void stopRepeating();
+	}
 	
 	public interface TimeBonus 
 	{
@@ -19,32 +22,31 @@ public class TimeBonusController implements TestRunnerObserver
 	{
 		public void timeBonusStartBonus();
 		public float timeBonusTimeLeft();
-		public boolean timeBonusEarnt();
 		
 		public void timeBonusQuestionCorrect();
 		public void timeBonusQuestionIncorrect();
 	}
-	
-	private Handler m_updateHandler = new Handler();
 
+	private static final long	UPDATE_FREQUENCY	= 10;
+	
 	private Runnable m_updateRunnable = new Runnable()
 	{
-
 		@Override
 		public void run()
 		{
 			update();
-			m_updateHandler.postDelayed(this, 10);
 		}
 	};
 	
+	private InvocationRepeater m_invocationRepeater;
 	private TimeBonus m_timeBonus;
 	private TimeBonusAdapter m_timeBonusAdapter;
 
-	public TimeBonusController(TimeBonus timeBonus, TimeBonusAdapter adapter)
+	public TimeBonusController(TimeBonus timeBonus, TimeBonusAdapter adapter, InvocationRepeater repeater)
 	{
 		m_timeBonus = timeBonus;
 		m_timeBonusAdapter = adapter;
+		m_invocationRepeater = repeater;
 	}
 	
 	private void update()
@@ -56,26 +58,22 @@ public class TimeBonusController implements TestRunnerObserver
 	public void testQuestionAnsweredCorrectly(Question question, Answer answer)
 	{
 		m_timeBonusAdapter.timeBonusQuestionCorrect();
-		// return m_timeBonusAdapter.timeBonusEarnt();
-		m_updateHandler.removeCallbacks(m_updateRunnable);
+		m_invocationRepeater.stopRepeating();
 	}
 
 	@Override
 	public void testQuestionAnsweredIncorrectly(Question question)
 	{
 		m_timeBonusAdapter.timeBonusQuestionIncorrect();
-		m_updateHandler.removeCallbacks(m_updateRunnable);
+		m_invocationRepeater.stopRepeating();
 	}
 
-	@Override
-	public void testStarted()
-	{
-	}
+	@Override public void testStarted() {}
 
 	@Override
 	public void testFinished()
 	{
-		m_updateHandler.removeCallbacks(m_updateRunnable);
+		m_invocationRepeater.stopRepeating();
 	}
 
 	@Override
@@ -83,7 +81,7 @@ public class TimeBonusController implements TestRunnerObserver
 	{
 		m_timeBonusAdapter.timeBonusStartBonus();
 		m_timeBonus.timeBonusDisplay(1.0f);
-		m_updateRunnable.run();		
+		m_invocationRepeater.startRepeating(m_updateRunnable, UPDATE_FREQUENCY);
 	}
 	
 
