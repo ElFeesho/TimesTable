@@ -71,15 +71,9 @@ public class ScoreController implements TestRunnerObserver {
 		m_view.displayScore(0, 0, 0);
 	}
 
-	@Override
-	public void testFinished() {
-		
-	}
+	@Override public void testFinished() {}
 
-	@Override
-	public void testQuestionAsked(QuestionRecord question, int questionNumber, int totalQuestions) {
-		
-	}
+	@Override public void testQuestionAsked(QuestionRecord question, int questionNumber, int totalQuestions) {}
 	
 	public long getScore()
 	{
