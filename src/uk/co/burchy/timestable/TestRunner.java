@@ -23,7 +23,9 @@ public class TestRunner {
 		public void testQuestionAsked(QuestionRecord question, int questionNumber, int totalQuestions);
 	}
 	
-	private HashSet<TestRunnerObserver> m_observers = new HashSet<TestRunnerObserver>();
+	//private HashSet<TestRunnerObserver> m_observers = new HashSet<TestRunnerObserver>();
+	
+	private Announcer<TestRunnerObserver> m_observers = new Announcer<TestRunnerObserver>(TestRunnerObserver.class);
 	
 	private Test m_test;
 	
@@ -37,7 +39,7 @@ public class TestRunner {
 	public void addObserver(TestRunnerObserver ...observer) {
 		for(TestRunnerObserver obs : observer)
 		{
-			m_observers.add(obs);
+			m_observers.addListener(obs);
 		}
 		
 		if(m_state.noQuestionsAsked())
@@ -56,7 +58,7 @@ public class TestRunner {
 	}
 	
 	public void removeObserver(TestRunnerObserver observer) {
-		m_observers.remove(observer);
+		m_observers.removeListener(observer);
 	}
 	
 	public void answerQuestion(int answer)
@@ -68,17 +70,11 @@ public class TestRunner {
 		
 		if(correct)
 		{
-			for(TestRunnerObserver observer : m_observers)
-			{
-				observer.testQuestionAnsweredCorrectly(questionRecord.getQuestion(), answerObject);
-			}
+			m_observers.announce().testQuestionAnsweredCorrectly(questionRecord.getQuestion(), answerObject);
 		}
 		else
 		{
-			for(TestRunnerObserver observer : m_observers)
-			{
-				observer.testQuestionAnsweredIncorrectly(questionRecord.getQuestion());
-			}
+			m_observers.announce().testQuestionAnsweredIncorrectly(questionRecord.getQuestion());
 		}
 	}
 	
@@ -104,24 +100,15 @@ public class TestRunner {
 	}
 
 	private void broadcastTestFinished() {
-		for(TestRunnerObserver observer : m_observers)
-		{
-			observer.testFinished();
-		}
+		m_observers.announce().testFinished();
 	}
 
 	private void broadcastTestStarted() {
-		for(TestRunnerObserver observer : m_observers)
-		{
-			observer.testStarted();
-		}
+		m_observers.announce().testStarted();
 	}
 
 	private void broadcastCurrentQuestion(QuestionRecord questionRecord) {
-		for(TestRunnerObserver observer : m_observers)
-		{
-			observer.testQuestionAsked(questionRecord, m_state.getCurrentQuestion(), m_test.size());
-		}
+		m_observers.announce().testQuestionAsked(questionRecord, m_state.getCurrentQuestion(), m_test.size());
 	}
 	
 	public void setState(TestRunnerState state)
