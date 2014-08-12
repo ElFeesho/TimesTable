@@ -12,10 +12,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Score"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
         <TextView
+            android:layout_marginLeft="8dp"
             android:id="@+id/tt_score"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0" />
@@ -28,12 +30,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Time"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
         <TextView
+            android:layout_marginLeft="8dp"
             android:id="@+id/tt_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24sp"
             android:text="0:00:00.000" />
     </TableRow>
 
@@ -44,13 +48,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Correct"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
         <TextView
+            android:layout_marginLeft="8dp"
             android:id="@+id/tt_correct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0" />
+            android:text="0"
+            android:textSize="24sp" />
     </TableRow>
 
     <TableRow>
@@ -60,13 +66,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wrong"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
         <TextView
+            android:layout_marginLeft="8dp"
             android:id="@+id/tt_wrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0" />
+            android:text="0" 
+            android:textSize="24sp"/>
     </TableRow>
 
 </uk.co.burchy.timestable.view.CompleteOverviewView>

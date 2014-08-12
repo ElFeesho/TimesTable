@@ -1,6 +1,7 @@
 package uk.co.burchy.timestable;
 
 import uk.co.burchy.timestable.view.CompleteOverviewView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -45,7 +46,7 @@ public class FinishedFragment extends Fragment {
 		view.findViewById(R.id.tt_take_another).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				getActivity().finish();
+				getActivity().startActivity(new Intent(getActivity(), MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			}
 		});
 		
